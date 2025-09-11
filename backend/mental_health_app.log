@@ -167,3 +167,5 @@
 2025-09-12 02:59:33,596 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 03:03:39,572 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 03:03:39,639 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 03:09:14,773 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 03:09:15,047 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
