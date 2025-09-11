@@ -77,7 +77,7 @@ def initialize_gemini_llm(model="gemini-1.5-flash"):
             temperature=0.7,
             convert_system_message_to_human=True,  # Gemini doesn't support system messages
             max_retries=2,  # Limit retries for faster fallback
-            request_timeout=30  # 30 second timeout
+            timeout=30  # 30 second timeout
         )
         
         return llm_gemini
@@ -91,15 +91,31 @@ def initialize_openai_llm(model="gpt-4o-mini"):
     Initialize the OpenAI LLM model (ChatGPT)
     Also, includes getting API key from .env file
     Current models used: gpt-4o, gpt-4o-mini
-    :return: the OpenAI LLM model object
+    :return: the OpenAI LLM model object or None if failed
     """
-    # Load environment variables
-    load_dotenv()
+    try:
+        # Load environment variables
+        load_dotenv()
+        
+        openai_api_key = os.getenv("OPENAI_API_KEY")
+        if not openai_api_key:
+            logging.warning("OPENAI_API_KEY not found in environment variables")
+            return None
 
-    # Initialize the LLM model
-    llm_openai = ChatOpenAI(model=model)
+        # Initialize the LLM model
+        llm_openai = ChatOpenAI(
+            model=model,
+            openai_api_key=openai_api_key,
+            temperature=0.7,
+            max_retries=2,
+            timeout=30
+        )
 
-    return llm_openai
+        return llm_openai
+        
+    except Exception as e:
+        logging.error(f"Failed to initialize OpenAI LLM: {e}")
+        return None
 
 def initialize_llm_with_fallback(gemini_model="gemini-1.5-flash", openai_model="gpt-4o"):
     """
@@ -113,9 +129,12 @@ def initialize_llm_with_fallback(gemini_model="gemini-1.5-flash", openai_model="
     
     if primary_llm is not None:
         return primary_llm, fallback_llm, "gemini"
-    else:
+    elif fallback_llm is not None:
         logging.warning("Gemini initialization failed, using OpenAI as primary")
         return fallback_llm, None, "openai"
+    else:
+        logging.error("Both Gemini and OpenAI initialization failed. Please check your API keys.")
+        return None, None, "none"
 
 # Backward compatibility
 def initialize_llm(model="gpt-4o-mini"):
@@ -172,6 +191,9 @@ def summarize(text):
             openai_model="gpt-4o-mini"
         )
         
+        if primary_llm is None:
+            raise Exception("No LLM models are available for summarization.")
+        
         prompt_template = PromptTemplate(
             template="""Your only task is to summarize the given text. Do not add any additional information.
             Each object has its own date.
@@ -190,7 +212,10 @@ def summarize(text):
         chain = prompt_template | primary_llm | output_parser
         
         # Invoke the chain with fallback mechanism
-        result, used_model = invoke_llm_with_fallback(chain, primary_llm, fallback_llm, primary_type)
+        result, used_model = invoke_llm_with_fallback_data(
+            chain, primary_llm, fallback_llm, primary_type, 
+            {"text": text}
+        )
         
         logging.info(f"📝 Summary generated using: {used_model}")
         return result
@@ -198,6 +223,80 @@ def summarize(text):
     except Exception as e:
         logging.error(f"❌ Summarization failed: {e}")
         return "Summary generation failed"
+
+def invoke_llm_with_fallback_data(chain, primary_llm, fallback_llm, primary_type, input_data=None):
+    """
+    Invoke LLM chain with fallback mechanism and input data
+    :param chain: The LangChain chain to invoke
+    :param primary_llm: Primary LLM instance
+    :param fallback_llm: Fallback LLM instance
+    :param primary_type: Type of primary LLM ("gemini" or "openai")
+    :param input_data: Data to pass to the chain
+    :return: tuple (result, used_model_type)
+    """
+    if input_data is None:
+        input_data = {}
+        
+    try:
+        # Try primary LLM (Gemini)
+        if primary_type == "gemini":
+            logging.info("Attempting to use Gemini API...")
+            result = chain.invoke(input_data)
+            logging.info("Gemini API call successful")
+            return result, "gemini"
+        else:
+            # Primary is already OpenAI
+            logging.info("Using OpenAI API as primary...")
+            result = chain.invoke(input_data)
+            logging.info("OpenAI API call successful")
+            return result, "openai"
+            
+    except Exception as e:
+        error_msg = str(e)
+        logging.error(f"{primary_type.capitalize()} API call failed: {error_msg}")
+        
+        # Check for specific Gemini errors that indicate immediate fallback
+        gemini_fallback_errors = [
+            "404",
+            "not found",
+            "not supported",
+            "models/gemini-pro is not found",
+            "api version",
+            "NotFound"
+        ]
+        
+        should_fallback_immediately = any(err in error_msg for err in gemini_fallback_errors)
+        
+        if fallback_llm is not None and primary_type == "gemini":
+            try:
+                if should_fallback_immediately:
+                    logging.warning("Gemini model not available, immediately falling back to OpenAI...")
+                else:
+                    logging.info("Falling back to OpenAI ChatGPT...")
+                    
+                # Extract the prompt template from the original chain
+                # and create a new chain with the fallback LLM
+                chain_steps = list(chain.steps) if hasattr(chain, 'steps') else []
+                if chain_steps:
+                    # Get the prompt template (first step) and output parser (last step)  
+                    prompt_template = chain_steps[0]
+                    output_parser = chain_steps[-1] if len(chain_steps) > 2 else StrOutputParser()
+                    fallback_chain = prompt_template | fallback_llm | output_parser
+                else:
+                    # If we can't extract steps, create a simple fallback chain
+                    from langchain.prompts import PromptTemplate
+                    from langchain_core.output_parsers import StrOutputParser
+                    fallback_chain = PromptTemplate(template="{input}", input_variables=["input"]) | fallback_llm | StrOutputParser()
+                
+                result = fallback_chain.invoke(input_data)
+                logging.info("OpenAI fallback successful")
+                return result, "openai_fallback"
+                
+            except Exception as fallback_error:
+                logging.error(f"OpenAI fallback also failed: {fallback_error}")
+                raise Exception(f"Both Gemini and OpenAI failed. Gemini: {error_msg}, OpenAI: {str(fallback_error)}")
+        else:
+            raise Exception(f"LLM call failed and no fallback available: {error_msg}")
 
 def invoke_llm_with_fallback(chain, primary_llm, fallback_llm, primary_type):
     """
@@ -245,8 +344,20 @@ def invoke_llm_with_fallback(chain, primary_llm, fallback_llm, primary_type):
                 else:
                     logging.info("Falling back to OpenAI ChatGPT...")
                     
-                # Recreate chain with fallback LLM
-                fallback_chain = chain.first | fallback_llm | chain.last
+                # Extract the prompt template from the original chain
+                # and create a new chain with the fallback LLM
+                chain_steps = list(chain.steps) if hasattr(chain, 'steps') else []
+                if chain_steps:
+                    # Get the prompt template (first step) and output parser (last step)  
+                    prompt_template = chain_steps[0]
+                    output_parser = chain_steps[-1] if len(chain_steps) > 2 else StrOutputParser()
+                    fallback_chain = prompt_template | fallback_llm | output_parser
+                else:
+                    # If we can't extract steps, create a simple fallback chain
+                    from langchain.prompts import PromptTemplate
+                    from langchain_core.output_parsers import StrOutputParser
+                    fallback_chain = PromptTemplate(template="{input}", input_variables=["input"]) | fallback_llm | StrOutputParser()
+                
                 result = fallback_chain.invoke({})
                 logging.info("OpenAI fallback successful")
                 return result, "openai_fallback"
@@ -269,6 +380,9 @@ def get_results(user_prompt):
         gemini_model="gemini-1.5-flash",
         openai_model="gpt-4o"
     )
+    
+    if primary_llm is None:
+        raise Exception("No LLM models are available. Please check your API keys in the .env file.")
 
     # Get system prompt
     system_prompt = get_system_prompt()
@@ -309,8 +423,8 @@ def get_results(user_prompt):
     # Define the chain of operations
     chain = prompt | primary_llm | output_parser
 
-    # Invoke the chain with fallback mechanism
-    result, used_model = invoke_llm_with_fallback(chain, primary_llm, fallback_llm, primary_type)
+    # Invoke the chain with fallback mechanism  
+    result, used_model = invoke_llm_with_fallback_data(chain, primary_llm, fallback_llm, primary_type, {})
     
     # Log which model was used
     logging.info(f"Response generated using: {used_model}")
