@@ -89,6 +89,7 @@
 2025-09-11 18:38:15,080 - root - INFO - Gemini API call successful
 2025-09-11 18:38:15,080 - root - INFO - Response generated using: gemini
 2025-09-11 18:38:22,177 - root - INFO - Chat response generated successfully
+<<<<<<< HEAD
 2025-09-12 01:40:58,707 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 01:40:59,070 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 01:52:58,940 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
@@ -169,3 +170,56 @@
 2025-09-12 03:03:39,639 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 03:09:14,773 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
 2025-09-12 03:09:15,047 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+=======
+2025-09-12 00:35:29,613 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:35:31,457 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:36:43,586 - root - INFO - Received chat request: i want to stop mastrubation...
+2025-09-12 00:36:43,593 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:36:45,703 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:38:30,145 - root - INFO - Received chat request: hello...
+2025-09-12 00:38:30,152 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:38:30,188 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:38:40,432 - root - INFO - Received chat request: hello...
+2025-09-12 00:38:40,436 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:38:40,468 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:41:35,024 - root - INFO - Received chat request: hi...
+2025-09-12 00:41:35,036 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:41:37,264 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:43:32,415 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:45:16,016 - root - INFO - Received chat request: hi...
+2025-09-12 00:45:16,025 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:45:16,072 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:45:36,218 - root - INFO - Received chat request: i am tejesh...
+2025-09-12 00:45:36,223 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:45:36,258 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:52:50,048 - root - INFO - Received chat request: hii...
+2025-09-12 00:52:50,054 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:52:51,088 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 00:53:22,215 - root - INFO - Received chat request: hello...
+2025-09-12 00:53:22,230 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 00:53:22,254 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 01:17:59,615 - root - INFO - Received chat request: hi...
+2025-09-12 01:17:59,626 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 01:17:59,698 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 01:29:19,580 - root - INFO - Received chat request: hi...
+2025-09-12 01:29:19,676 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 01:29:19,776 - root - ERROR - Chat request failed: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-09-12 01:31:55,250 - root - INFO - Received chat request: hi...
+2025-09-12 01:31:55,269 - root - WARNING - OPENAI_API_KEY not found in environment variables
+2025-09-12 01:32:07,599 - root - INFO - Attempting to use Gemini API...
+2025-09-12 01:32:10,231 - root - INFO - Gemini API call successful
+2025-09-12 01:32:10,232 - root - INFO - Response generated using: gemini
+2025-09-12 01:32:13,640 - root - INFO - Chat response generated successfully
+2025-09-12 01:32:35,188 - root - INFO - Received chat request: wtf...
+2025-09-12 01:32:35,201 - root - WARNING - OPENAI_API_KEY not found in environment variables
+2025-09-12 01:32:46,031 - root - INFO - Attempting to use Gemini API...
+2025-09-12 01:32:47,914 - root - INFO - Gemini API call successful
+2025-09-12 01:32:47,915 - root - INFO - Response generated using: gemini
+2025-09-12 01:32:51,559 - root - INFO - Chat response generated successfully
+2025-09-12 01:34:33,262 - root - INFO - Received chat request: do you know my name ...
+2025-09-12 01:34:33,273 - root - WARNING - OPENAI_API_KEY not found in environment variables
+2025-09-12 01:34:44,095 - root - INFO - Attempting to use Gemini API...
+2025-09-12 01:34:46,928 - root - INFO - Gemini API call successful
+2025-09-12 01:34:46,929 - root - INFO - Response generated using: gemini
+2025-09-12 01:34:50,439 - root - INFO - Chat response generated successfully
+>>>>>>> 2def362728f8764b0f7418d297c74ca3c937ea85
