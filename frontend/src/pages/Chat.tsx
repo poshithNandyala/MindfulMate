@@ -194,7 +194,7 @@ const Chat: React.FC = () => {
       )}
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto px-6 py-8 pb-36">
+      <div className="flex-1 overflow-y-auto px-6 py-8 pb-32">
         <div className="max-w-4xl mx-auto space-y-6">
           {messages.length === 0 ? (
             <div className="text-center py-16 animate-fade-in">
@@ -287,7 +287,7 @@ const Chat: React.FC = () => {
       </div>
 
       {/* Amazing Input */}
-      <div className="fixed bottom-0 left-0 right-0 glass border-t border-accent-color/30 backdrop-blur-lg">
+      <div className="fixed bottom-20 left-0 right-0 glass border-t border-accent-color/30 backdrop-blur-lg">
         <div className="max-w-4xl mx-auto p-6">
           <div className="flex items-end gap-4">
             <div className="flex-1 relative">

@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 from datetime import datetime, timedelta, timezone
 from contextlib import contextmanager
+from dotenv import load_dotenv
+import os
 
 
 @contextmanager 
@@ -9,8 +11,12 @@ def get_mongo_client():
     Context manager for MongoDB client to ensure proper cleanup
     :return: MongoDB client
     """
-    MONGO_URL = "mongodb+srv://jc4320:uaerobp43ssuhnNl@cluster0.2tfqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    client = MongoClient(MONGO_URL)
+    load_dotenv()
+    MONGO_URI = os.getenv("MONGO_URI")
+    if not MONGO_URI:
+        raise ValueError("MONGO_URI not found in environment variables")
+    
+    client = MongoClient(MONGO_URI)
     try:
         yield client
     finally:
@@ -23,8 +29,12 @@ def get_mongo_collection(collection_name="conversation"):
     :param collection_name: the collection to retrieve
     :return: the collection object
     """
-    MONGO_URL = "mongodb+srv://jc4320:uaerobp43ssuhnNl@cluster0.2tfqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    client = MongoClient(MONGO_URL)
+    load_dotenv()
+    MONGO_URI = os.getenv("MONGO_URI")
+    if not MONGO_URI:
+        raise ValueError("MONGO_URI not found in environment variables")
+        
+    client = MongoClient(MONGO_URI)
     db = client["chatbot_db"]
     collection = db[collection_name]
 
