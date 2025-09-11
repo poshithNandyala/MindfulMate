@@ -1,0 +1,422 @@
+[
+    {
+        "_id": "ObjectId('example1')",
+        "user_input": "I don’t know. I just feel exhausted all the time, even when I haven’t done much.",
+        "sentiment_score": -0.7,
+        "response": "Physically exhausted, emotionally drained, or both?",
+        "timestamp": "2025-02-10T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example2')",
+        "user_input": "Both, I guess. Even when I get enough sleep, I still wake up feeling like I haven’t rested at all.",
+        "sentiment_score": -0.8,
+        "response": "That sounds frustrating. Have you noticed any patterns—specific times of day or certain situations that make it worse?",
+        "timestamp": "2025-02-10T10:31:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example3')",
+        "user_input": "Mornings are the hardest. Just getting out of bed feels like an impossible task. And when I do, I’m already dreading the rest of the day.",
+        "sentiment_score": -0.85,
+        "response": "It sounds like there’s a heavy weight on you before the day even starts. Any particular thoughts running through your mind when you wake up?",
+        "timestamp": "2025-02-10T10:32:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example4')",
+        "user_input": "Mostly just this overwhelming feeling that nothing really matters. Like, what’s the point of anything if I feel this way every day?",
+        "sentiment_score": -0.9,
+        "response": "That’s a difficult place to be in. Do you recall a time when you didn’t feel this way?",
+        "timestamp": "2025-02-10T10:33:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example5')",
+        "user_input": "Yeah, I think so. It’s hard to remember exactly when, but I wasn’t always this drained.",
+        "sentiment_score": -0.6,
+        "response": "When things were better, what was different about your life or your mindset?",
+        "timestamp": "2025-02-10T10:34:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example6')",
+        "user_input": "I had more energy, I cared about things. I used to enjoy my hobbies, hanging out with friends. Now, even when I try, I just feel… disconnected.",
+        "sentiment_score": -0.75,
+        "response": "That disconnection—does it feel like you’re watching your life happen rather than actually living it?",
+        "timestamp": "2025-02-10T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example7')",
+        "user_input": "Yeah, exactly. Like I’m going through the motions, but nothing really affects me.",
+        "sentiment_score": -0.8,
+        "response": "That sense of detachment can be a defense mechanism. Sometimes the mind distances itself when things feel overwhelming. Have there been any recent stressors or major changes in your life?",
+        "timestamp": "2025-02-10T10:36:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example8')",
+        "user_input": "I mean, nothing extreme. Just the usual—work stress, family stuff. But I guess it’s been piling up.",
+        "sentiment_score": -0.65,
+        "response": "Even “usual” stress can build up over time, especially if there’s no outlet. How do you typically cope when things start feeling overwhelming?",
+        "timestamp": "2025-02-10T10:37:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example9')",
+        "user_input": "I don’t know. I used to talk to friends, but lately, I don’t even feel like reaching out.",
+        "sentiment_score": -0.7,
+        "response": "Isolation can reinforce these feelings. Even when it’s hard, staying connected with people who care about you might help. Would you be open to trying that, even in small ways?",
+        "timestamp": "2025-02-10T10:38:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example10')",
+        "user_input": "Maybe. I just don’t want to be a burden.",
+        "sentiment_score": -0.85,
+        "response": "Feeling like a burden is common, but that doesn’t make it true. The people who care about you likely want to be there for you. Would it help to think about a low-effort way to reconnect?",
+        "timestamp": "2025-02-10T10:39:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('example11')",
+        "user_input": "I guess I could try sending a message to a friend. Just to check in.",
+        "sentiment_score": -0.4,
+        "response": "That’s a good start. Small steps can make a difference over time. Let’s keep exploring ways to reconnect with what used to bring you a sense of meaning.",
+        "timestamp": "2025-02-10T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety1')",
+        "user_input": "I’ve been feeling anxious all the time, even over small things.",
+        "sentiment_score": -0.8,
+        "response": "That sounds overwhelming. What are some of the things that trigger this anxiety?",
+        "timestamp": "2025-02-11T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety2')",
+        "user_input": "Mostly work deadlines and social situations. Even casual conversations make me nervous.",
+        "sentiment_score": -0.75,
+        "response": "Social anxiety can be tough. Do you tend to overthink conversations before or after they happen?",
+        "timestamp": "2025-02-11T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety3')",
+        "user_input": "Both. I rehearse what to say beforehand, and later I replay everything, wondering if I sounded weird.",
+        "sentiment_score": -0.85,
+        "response": "It sounds like your mind is working overtime. Have you tried mindfulness or grounding techniques?",
+        "timestamp": "2025-02-11T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety4')",
+        "user_input": "Not really. I don’t know where to start.",
+        "sentiment_score": -0.7,
+        "response": "We can start small. One simple grounding technique is the '5-4-3-2-1' method. Have you heard of it?",
+        "timestamp": "2025-02-11T10:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety5')",
+        "user_input": "No, what’s that?",
+        "sentiment_score": -0.6,
+        "response": "It’s a technique where you focus on five things you see, four things you feel, three things you hear, two things you smell, and one thing you taste. It helps anchor you in the present.",
+        "timestamp": "2025-02-11T10:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety6')",
+        "user_input": "That sounds like it could be helpful. I usually just try to distract myself.",
+        "sentiment_score": -0.5,
+        "response": "Distraction can be useful in the short term, but grounding techniques can help you manage the anxiety rather than avoid it.",
+        "timestamp": "2025-02-11T10:55:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety7')",
+        "user_input": "Yeah, I guess I do avoid it. I just don’t want to deal with the feelings.",
+        "sentiment_score": -0.75,
+        "response": "That makes sense. Anxiety is uncomfortable, but facing it in small, controlled ways can make it easier to handle over time.",
+        "timestamp": "2025-02-11T11:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety8')",
+        "user_input": "I’ll give it a try. But what if it doesn’t work?",
+        "sentiment_score": -0.65,
+        "response": "It might take practice. But if one technique doesn’t help, there are many others we can explore together.",
+        "timestamp": "2025-02-11T11:05:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety9')",
+        "user_input": "Okay. I guess I’ll start with the 5-4-3-2-1 method.",
+        "sentiment_score": -0.4,
+        "response": "That’s a great choice. Let’s check in next time to see how it worked for you.",
+        "timestamp": "2025-02-11T11:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('anxiety10')",
+        "user_input": "Sounds good. Thanks for your help.",
+        "sentiment_score": 0.2,
+        "response": "You’re welcome. Take it one step at a time.",
+        "timestamp": "2025-02-11T11:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation1')",
+        "user_input": "I’ve been struggling to stay motivated. Even simple tasks feel like a chore.",
+        "sentiment_score": -0.8,
+        "response": "That can be frustrating. Is this a recent change, or has it been going on for a while?",
+        "timestamp": "2025-02-12T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation2')",
+        "user_input": "It’s been a few months. I keep procrastinating and then feel guilty about it.",
+        "sentiment_score": -0.75,
+        "response": "That cycle of procrastination and guilt can be exhausting. What tasks feel the hardest to start?",
+        "timestamp": "2025-02-12T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation3')",
+        "user_input": "Mostly work-related stuff. I keep putting off projects until the last minute.",
+        "sentiment_score": -0.7,
+        "response": "That’s understandable. Do deadlines help you push through, or do they add more stress?",
+        "timestamp": "2025-02-12T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation4')",
+        "user_input": "A little bit of both. I always manage to get things done, but it’s draining.",
+        "sentiment_score": -0.65,
+        "response": "It sounds like you rely on pressure to complete tasks. Have you tried breaking them down into smaller steps?",
+        "timestamp": "2025-02-12T10:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation5')",
+        "user_input": "I have, but I still struggle with starting.",
+        "sentiment_score": -0.7,
+        "response": "Sometimes getting started is the hardest part. Have you heard of the 'two-minute rule'?",
+        "timestamp": "2025-02-12T10:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation6')",
+        "user_input": "No, what’s that?",
+        "sentiment_score": -0.6,
+        "response": "It’s a method where you start a task by committing just two minutes to it. Often, once you begin, you end up continuing longer.",
+        "timestamp": "2025-02-12T10:55:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation7')",
+        "user_input": "That sounds like something I could try.",
+        "sentiment_score": -0.4,
+        "response": "Great. Let’s set one small task you can apply this to today.",
+        "timestamp": "2025-02-12T11:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation8')",
+        "user_input": "I’ll try it with writing an email I’ve been putting off.",
+        "sentiment_score": -0.3,
+        "response": "That’s a good start. Let me know how it goes next time we talk.",
+        "timestamp": "2025-02-12T11:05:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation9')",
+        "user_input": "I will. Hopefully, it helps.",
+        "sentiment_score": 0.1,
+        "response": "Even small progress is still progress. Be patient with yourself.",
+        "timestamp": "2025-02-12T11:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('motivation10')",
+        "user_input": "Thanks, I appreciate it.",
+        "sentiment_score": 0.2,
+        "response": "You're welcome. Take care.",
+        "timestamp": "2025-02-12T11:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness1')",
+        "user_input": "I feel like I’m always alone. Even when I’m around people, I don’t feel connected.",
+        "sentiment_score": -0.85,
+        "response": "That feeling of disconnection can be painful. Do you find it hard to talk to people about how you feel?",
+        "timestamp": "2025-02-13T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness2')",
+        "user_input": "Yeah. I don’t want to bother anyone, and I feel like no one really understands.",
+        "sentiment_score": -0.9,
+        "response": "It’s understandable to feel that way. But have you had moments where you did feel understood?",
+        "timestamp": "2025-02-13T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness3')",
+        "user_input": "Maybe once in a while, but it’s rare.",
+        "sentiment_score": -0.8,
+        "response": "Do you have any close friends or family members you trust?",
+        "timestamp": "2025-02-13T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness4')",
+        "user_input": "A few, but I don’t talk to them as much anymore.",
+        "sentiment_score": -0.7,
+        "response": "What changed?",
+        "timestamp": "2025-02-13T10:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness5')",
+        "user_input": "I just feel like I don’t fit in with them anymore.",
+        "sentiment_score": -0.75,
+        "response": "That happens sometimes. People grow, and relationships change. Have you thought about reaching out?",
+        "timestamp": "2025-02-13T10:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness6')",
+        "user_input": "I don’t know what I would even say.",
+        "sentiment_score": -0.7,
+        "response": "Sometimes a simple message to check in can make a difference.",
+        "timestamp": "2025-02-13T10:55:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness7')",
+        "user_input": "I guess I could try. It just feels awkward.",
+        "sentiment_score": -0.6,
+        "response": "It might feel awkward at first, but connection is worth the effort.",
+        "timestamp": "2025-02-13T11:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness8')",
+        "user_input": "Yeah, I’ll think about it.",
+        "sentiment_score": -0.5,
+        "response": "That’s a good step. No pressure, just consider it.",
+        "timestamp": "2025-02-13T11:05:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness9')",
+        "user_input": "Thanks, I needed to talk about this.",
+        "sentiment_score": 0.1,
+        "response": "I’m glad you did. You're not alone in this.",
+        "timestamp": "2025-02-13T11:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('loneliness10')",
+        "user_input": "I appreciate that.",
+        "sentiment_score": 0.2,
+        "response": "You're always welcome here.",
+        "timestamp": "2025-02-13T11:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup1')",
+        "user_input": "I just went through a breakup, and I feel completely lost.",
+        "sentiment_score": -0.9,
+        "response": "Breakups can be really painful. Would you like to talk about what happened?",
+        "timestamp": "2025-02-14T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup2')",
+        "user_input": "We just grew apart, I guess. But I still feel like I failed.",
+        "sentiment_score": -0.85,
+        "response": "It’s natural to feel that way. But relationships ending doesn’t mean you failed.",
+        "timestamp": "2025-02-14T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup3')",
+        "user_input": "I keep thinking about what I could have done differently.",
+        "sentiment_score": -0.8,
+        "response": "That’s understandable. But relationships are a two-way street. You’re not solely responsible for everything.",
+        "timestamp": "2025-02-14T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup4')",
+        "user_input": "I know that logically, but it doesn’t make it hurt any less.",
+        "sentiment_score": -0.85,
+        "response": "Of course. Healing takes time. Have you been able to talk to friends or family about how you’re feeling?",
+        "timestamp": "2025-02-14T10:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup5')",
+        "user_input": "Not really. I don’t want to bring people down with my problems.",
+        "sentiment_score": -0.75,
+        "response": "I understand that concern. But the people who care about you likely want to support you.",
+        "timestamp": "2025-02-14T10:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup6')",
+        "user_input": "Maybe. I just feel like I need to figure this out on my own.",
+        "sentiment_score": -0.7,
+        "response": "It’s okay to take time for yourself. But isolation can sometimes make things harder.",
+        "timestamp": "2025-02-14T10:55:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup7')",
+        "user_input": "I don’t even know where to start with moving on.",
+        "sentiment_score": -0.85,
+        "response": "One step at a time. Start with small things—focusing on self-care, staying connected, and giving yourself permission to heal.",
+        "timestamp": "2025-02-14T11:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup8')",
+        "user_input": "I guess I should stop checking their social media every day.",
+        "sentiment_score": -0.75,
+        "response": "That’s a great idea. It might help create emotional space so you can focus on yourself.",
+        "timestamp": "2025-02-14T11:05:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup9')",
+        "user_input": "I’ll try, but it’s going to be hard.",
+        "sentiment_score": -0.6,
+        "response": "It will be, but you don’t have to do it all at once. Just take it one day at a time.",
+        "timestamp": "2025-02-14T11:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('breakup10')",
+        "user_input": "Thanks. I needed to hear that.",
+        "sentiment_score": 0.1,
+        "response": "You're welcome. Healing isn’t linear, but you’re taking steps in the right direction.",
+        "timestamp": "2025-02-14T11:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career1')",
+        "user_input": "I feel stuck in my career. I don’t know what I really want to do.",
+        "sentiment_score": -0.75,
+        "response": "Career uncertainty is common. Are you unhappy with your current job, or just unsure about the future?",
+        "timestamp": "2025-02-15T10:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career2')",
+        "user_input": "A bit of both. My job isn’t bad, but I don’t feel passionate about it.",
+        "sentiment_score": -0.65,
+        "response": "Lack of passion can be draining. Have you thought about what excites you outside of work?",
+        "timestamp": "2025-02-15T10:35:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career3')",
+        "user_input": "I used to enjoy writing, but I haven’t done much of that lately.",
+        "sentiment_score": -0.5,
+        "response": "That’s interesting. Have you thought about ways to incorporate writing into your career?",
+        "timestamp": "2025-02-15T10:40:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career4')",
+        "user_input": "Not really. I don’t think I could make a living from it.",
+        "sentiment_score": -0.6,
+        "response": "It doesn’t have to be all or nothing. Maybe exploring it as a side project could help.",
+        "timestamp": "2025-02-15T10:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career5')",
+        "user_input": "That’s a good point. I guess I just feel stuck in general.",
+        "sentiment_score": -0.7,
+        "response": "Feeling stuck can be paralyzing. Have you set any small goals to move forward?",
+        "timestamp": "2025-02-15T10:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career6')",
+        "user_input": "Not really. I don’t even know where to start.",
+        "sentiment_score": -0.75,
+        "response": "Starting can be the hardest part. What’s one small step you can take this week?",
+        "timestamp": "2025-02-15T10:55:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career7')",
+        "user_input": "I guess I could look into some writing opportunities online.",
+        "sentiment_score": -0.4,
+        "response": "That sounds like a solid first step. Even researching can help clarify your options.",
+        "timestamp": "2025-02-15T11:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career8')",
+        "user_input": "Yeah, I think I’ll do that.",
+        "sentiment_score": -0.3,
+        "response": "Great. Let’s check in next time to see how it went.",
+        "timestamp": "2025-02-15T11:05:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('career9')",
+        "user_input": "Thanks for the advice.",
+        "sentiment_score": 0.2,
+        "response": "You're welcome. You’re making progress, even if it doesn’t feel like it yet.",
+        "timestamp": "2025-02-15T11:10:00.000000+00:00"
+    }
+]

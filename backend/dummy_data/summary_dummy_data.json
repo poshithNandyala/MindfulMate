@@ -1,0 +1,50 @@
+[
+    {
+        "_id": "ObjectId('summary1')",
+        "date": "2025-02-10",
+        "topic": "General Emotional Exhaustion",
+        "user_summary": "The user expressed persistent exhaustion, both physically and emotionally. They described feeling disconnected from life, struggling to find motivation, and lacking interest in activities they once enjoyed. They also mentioned feeling like they were just going through the motions. The conversation introduced the idea of gradual reconnection with hobbies and social interactions.",
+        "overall_mood": "Drained and detached, but slightly reflective on past well-being.",
+        "sentiment_score": -0.85
+    },
+    {
+        "_id": "ObjectId('summary2')",
+        "date": "2025-02-11",
+        "topic": "Coping with Anxiety",
+        "user_summary": "The user expressed persistent anxiety, particularly in social situations and work deadlines. They struggle with overthinking conversations and avoiding anxious thoughts. They were introduced to grounding techniques and showed a willingness to try the 5-4-3-2-1 method.",
+        "overall_mood": "Stressed and overwhelmed, but open to solutions.",
+        "sentiment_score": -0.75
+    },
+    {
+        "_id": "ObjectId('summary3')",
+        "date": "2025-02-12",
+        "topic": "Struggles with Motivation",
+        "user_summary": "The user reported difficulty starting tasks, feeling stuck in procrastination and guilt cycles. They acknowledged using pressure and deadlines to push through work but found it exhausting. They were introduced to the two-minute rule as a possible strategy and decided to try it with a pending email.",
+        "overall_mood": "Frustrated and lacking motivation, but open to trying new approaches.",
+        "sentiment_score": -0.65
+    },
+    {
+        "_id": "ObjectId('summary4')",
+        "date": "2025-02-13",
+        "topic": "Loneliness and Isolation",
+        "user_summary": "The user expressed feelings of isolation and disconnection, even when surrounded by others. They mentioned drifting away from friends and feeling hesitant to reach out. They were encouraged to consider reconnecting with someone and showed slight openness to the idea.",
+        "overall_mood": "Lonely and withdrawn, with mild hope for connection.",
+        "sentiment_score": -0.8
+    },
+    {
+        "_id": "ObjectId('summary5')",
+        "date": "2025-02-14",
+        "topic": "Overcoming a Breakup",
+        "user_summary": "The user discussed a recent breakup and feelings of failure despite acknowledging the mutual nature of the separation. They struggled with moving on and frequently checked their ex’s social media. They were encouraged to focus on self-care and gradually create emotional space.",
+        "overall_mood": "Heartbroken and struggling with detachment, but receptive to gradual healing.",
+        "sentiment_score": -0.85
+    },
+    {
+        "_id": "ObjectId('summary6')",
+        "date": "2025-02-15",
+        "topic": "Career Uncertainty",
+        "user_summary": "The user felt lost in their career and lacked passion for their current job. They mentioned a past interest in writing but were unsure how to pursue it professionally. They agreed to explore online writing opportunities as a small step forward.",
+        "overall_mood": "Uncertain and aimless, but slightly hopeful about rediscovering passion.",
+        "sentiment_score": -0.6
+    }
+]

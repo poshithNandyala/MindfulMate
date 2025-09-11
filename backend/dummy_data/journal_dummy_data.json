@@ -1,0 +1,98 @@
+[
+    {
+        "_id": "ObjectId('journal1')",
+        "title": "Feeling Drained",
+        "entry": "Woke up feeling exhausted again. Even after a full night's sleep, I still feel tired.",
+        "timestamp": "2025-02-10T08:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal2')",
+        "title": "Lack of Motivation",
+        "entry": "I have so much to do, but I just can't bring myself to start. Everything feels overwhelming.",
+        "timestamp": "2025-02-10T10:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal3')",
+        "title": "Mind Feels Foggy",
+        "entry": "I can't concentrate on anything. My thoughts are scattered, and I feel unproductive.",
+        "timestamp": "2025-02-10T12:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal4')",
+        "title": "Social Disconnect",
+        "entry": "I haven't talked to any of my friends in days. I feel like I'm isolating myself again.",
+        "timestamp": "2025-02-10T14:20:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal5')",
+        "title": "Anxiety at Work",
+        "entry": "The thought of work tomorrow is making me anxious. I don't know how to get through it.",
+        "timestamp": "2025-02-10T16:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal6')",
+        "title": "Trying to Ground Myself",
+        "entry": "I read about the 5-4-3-2-1 technique today. Maybe I should try it to calm down.",
+        "timestamp": "2025-02-11T09:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal7')",
+        "title": "Overthinking Conversations",
+        "entry": "I keep replaying a conversation from yesterday. Did I say something weird? Did they think I was awkward?",
+        "timestamp": "2025-02-11T11:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal8')",
+        "title": "Deep Breaths",
+        "entry": "I tried deep breathing exercises today. It helped a little, but my mind still races too much.",
+        "timestamp": "2025-02-11T13:20:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal9')",
+        "title": "Drowning in Procrastination",
+        "entry": "I have an important task to complete, but I'm avoiding it. The more I wait, the worse it gets.",
+        "timestamp": "2025-02-12T08:45:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal10')",
+        "title": "Two-Minute Rule Attempt",
+        "entry": "I decided to try the two-minute rule. I told myself I’d just open the document, and somehow I ended up working for 20 minutes.",
+        "timestamp": "2025-02-12T10:00:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal11')",
+        "title": "Loneliness Hits Hard",
+        "entry": "I feel invisible. No messages, no calls. Maybe I should reach out first, but I don't want to bother anyone.",
+        "timestamp": "2025-02-13T09:15:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal12')",
+        "title": "Thinking About Old Friends",
+        "entry": "I miss how easy things used to be. I used to have people to talk to, now it just feels empty.",
+        "timestamp": "2025-02-13T11:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal13')",
+        "title": "Heart Still Hurts",
+        "entry": "I thought I was okay, but seeing something that reminded me of my ex hit me hard today.",
+        "timestamp": "2025-02-14T08:30:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal14')",
+        "title": "Trying Not to Stalk Social Media",
+        "entry": "I promised myself I wouldn’t check their profile today. I almost did, but I stopped myself.",
+        "timestamp": "2025-02-14T12:50:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal15')",
+        "title": "Career Doubts",
+        "entry": "I don’t know if I’m in the right field. What if I’m wasting time?",
+        "timestamp": "2025-02-15T09:10:00.000000+00:00"
+    },
+    {
+        "_id": "ObjectId('journal16')",
+        "title": "Revisiting My Passion",
+        "entry": "I used to love writing. Maybe I should start again, just for myself.",
+        "timestamp": "2025-02-15T11:45:00.000000+00:00"
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "ObjectId('summary_journal1')",
+        "date": "2025-02-10",
+        "summary": "The user felt physically and emotionally drained, struggling with motivation and productivity. They expressed a sense of disconnection from others, anxiety about work, and a general lack of energy to engage in daily activities.",
+        "overall_mood": "Exhausted and disconnected."
+    },
+    {
+        "_id": "ObjectId('summary_journal2')",
+        "date": "2025-02-11",
+        "summary": "The user focused on anxiety and overthinking, especially regarding social interactions. They were introduced to grounding techniques and attempted to use deep breathing exercises but still found their mind racing.",
+        "overall_mood": "Anxious but open to trying coping strategies."
+    },
+    {
+        "_id": "ObjectId('summary_journal3')",
+        "date": "2025-02-12",
+        "summary": "The user struggled with procrastination and a lack of motivation. They attempted the two-minute rule, which surprisingly helped them get started on a task. However, they still felt overwhelmed by responsibilities.",
+        "overall_mood": "Frustrated but seeing small improvements."
+    },
+    {
+        "_id": "ObjectId('summary_journal4')",
+        "date": "2025-02-13",
+        "summary": "The user experienced deep loneliness and a sense of disconnection from friends. They reminisced about old relationships and struggled with whether to reach out to others or remain isolated.",
+        "overall_mood": "Lonely and nostalgic."
+    },
+    {
+        "_id": "ObjectId('summary_journal5')",
+        "date": "2025-02-14",
+        "summary": "The breakup continued to weigh heavily on the user. They struggled with resisting the urge to check their ex’s social media and experienced emotional pain from unexpected reminders.",
+        "overall_mood": "Heartbroken and struggling with detachment."
+    },
+    {
+        "_id": "ObjectId('summary_journal6')",
+        "date": "2025-02-15",
+        "summary": "The user reflected on career uncertainty and their lack of passion for their current job. They thought about revisiting an old hobby (writing) and considered exploring it further.",
+        "overall_mood": "Uncertain but slightly hopeful for rediscovery."
+    }
+]
