@@ -89,3 +89,5 @@
 2025-09-11 18:38:15,080 - root - INFO - Gemini API call successful
 2025-09-11 18:38:15,080 - root - INFO - Response generated using: gemini
 2025-09-11 18:38:22,177 - root - INFO - Chat response generated successfully
+2025-09-12 01:40:58,707 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
+2025-09-12 01:40:59,070 - langchain_google_genai.chat_models - WARNING - Unexpected argument 'request_timeout' provided to ChatGoogleGenerativeAI. Did you mean: 'timeout'?
