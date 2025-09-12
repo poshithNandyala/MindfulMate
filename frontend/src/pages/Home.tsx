@@ -37,6 +37,7 @@ const Home: React.FC = () => {
   const handleMoodSelect = (mood: string) => {
     setSelectedMood(mood);
     // TODO: Send mood to backend
+    console.log('Mood selected:', mood);
   };
 
   const stats = [
@@ -45,166 +46,169 @@ const Home: React.FC = () => {
     { label: 'Meditation Minutes', value: '45', icon: '🧘‍♀️' },
   ];
 
+  const quickActions = [
+    { name: 'Start AI Chat', path: '/chat', icon: '💬', gradient: 'from-blue-500 to-purple-600' },
+    { name: 'Write Journal', path: '/journal', icon: '📝', gradient: 'from-green-500 to-teal-600' },
+    { name: 'Meditate Now', path: '/meditate', icon: '🧘‍♀️', gradient: 'from-purple-500 to-pink-600' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-bg via-secondary-bg to-primary-bg overflow-hidden relative">
-      {/* Background Animation */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(12)].map((_, i) => (
+    <div className="min-h-screen bg-transparent relative overflow-hidden">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full bg-gradient-to-r from-accent-color/10 to-teal-400/10 animate-pulse"
+            className="absolute rounded-full bg-gradient-to-r from-accent-color/5 to-teal-400/5 animate-pulse"
             style={{
-              width: `${Math.random() * 200 + 100}px`,
-              height: `${Math.random() * 200 + 100}px`,
+              width: `${Math.random() * 120 + 40}px`,
+              height: `${Math.random() * 120 + 40}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
-              animationDuration: `${Math.random() * 5 + 3}s`,
+              animationDuration: `${Math.random() * 4 + 2}s`,
             }}
           />
         ))}
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-12 pb-24">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Hero Section */}
-        <div className="text-center mb-16 animate-fade-in">
-          <div className="mb-8">
-            <div className="inline-flex items-center justify-center w-32 h-32 bg-gradient-to-r from-accent-color via-teal-400 to-blue-500 rounded-full mb-6 shadow-2xl animate-pulse">
-              <span className="text-5xl">🌟</span>
+        <div className="text-center mb-8 sm:mb-12 animate-fade-in">
+          <div className="mb-6 sm:mb-8">
+            <div className="inline-flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-r from-accent-color via-teal-400 to-blue-500 rounded-full mb-4 sm:mb-6 shadow-2xl animate-pulse">
+              <span className="text-4xl sm:text-5xl">🌟</span>
             </div>
           </div>
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            <span className="gradient-text">{greeting}!</span> 
-            <div className="text-4xl md:text-6xl mt-2">👋</div>
+          
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-4 sm:mb-6">
+            <span className="bg-gradient-to-r from-accent-color via-teal-400 to-blue-500 bg-clip-text text-transparent">
+              {greeting}!
+            </span>
+            <div className="text-3xl sm:text-5xl lg:text-6xl mt-2 animate-bounce">👋</div>
           </h1>
-          <p className="text-2xl text-secondary-text max-w-3xl mx-auto leading-relaxed">
-            Your personal <span className="text-accent-color font-semibold">AI mental wellness companion</span> is here to support, listen, and guide you.
+          
+          <p className="text-lg sm:text-xl lg:text-2xl text-medium max-w-2xl lg:max-w-4xl mx-auto leading-relaxed mb-6 sm:mb-8">
+            Your personal <span className="text-accent-color font-semibold">AI mental wellness companion</span> is here to support, listen, and guide you on your journey.
           </p>
-          <div className="mt-8">
-            <button
-              onClick={() => navigate('/chat')}
-              className="px-12 py-4 bg-gradient-to-r from-accent-color via-teal-400 to-blue-500 text-white font-bold text-xl rounded-full shadow-2xl hover:shadow-accent-color/25 hover:scale-110 transition-all duration-300 animate-pulse"
-            >
-              💬 Start Talking Now
-            </button>
-          </div>
+          
+          <button
+            onClick={() => navigate('/chat')}
+            className="inline-flex items-center px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-accent-color via-teal-400 to-blue-500 text-white font-bold text-lg sm:text-xl rounded-2xl shadow-2xl hover:shadow-accent-color/25 hover:scale-105 transition-all duration-300 animate-pulse"
+          >
+            <span className="mr-2">💬</span>
+            Start Talking Now
+          </button>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 lg:gap-6 mb-8 sm:mb-10">
           {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="glass rounded-custom p-4 text-center animate-fade-in"
+              className="bg-dark/40 backdrop-blur-sm border border-medium/20 rounded-2xl p-4 sm:p-6 text-center transition-all duration-300 hover:bg-dark/60 hover:border-accent-color/30 hover:scale-105 animate-fade-in"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="text-2xl mb-2">{stat.icon}</div>
-              <div className="text-2xl font-bold text-accent-color">{stat.value}</div>
-              <div className="text-sm text-secondary-text">{stat.label}</div>
+              <div className="text-2xl sm:text-3xl mb-2">{stat.icon}</div>
+              <div className="text-2xl sm:text-3xl font-bold text-accent-color mb-1">{stat.value}</div>
+              <div className="text-sm sm:text-base text-medium font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
 
         {/* Mood Check-in */}
-        <div className="bg-secondary-bg/50 backdrop-blur-sm border border-accent-bg rounded-custom-lg p-6 mb-8 shadow-medium">
-          <h2 className="text-2xl font-semibold text-primary-text mb-6 flex items-center">
-            <span className="mr-3">💭</span>
+        <div className="bg-dark/30 backdrop-blur-sm border border-medium/20 rounded-3xl p-6 sm:p-8 mb-8 sm:mb-10 shadow-xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-light mb-6 flex items-center">
+            <span className="mr-3 text-3xl">💭</span>
             How are you feeling today?
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
             {moods.map((mood) => (
               <button
                 key={mood.name}
                 onClick={() => handleMoodSelect(mood.name)}
-                className={`p-4 rounded-custom border-2 transition-all duration-300 btn-hover ${
+                className={`group relative p-4 sm:p-6 rounded-2xl border-2 transition-all duration-300 transform ${
                   selectedMood === mood.name
-                    ? 'border-accent-color bg-accent-color/10 shadow-medium'
-                    : 'border-accent-bg hover:border-accent-color/50'
+                    ? 'border-accent-color bg-accent-color/10 shadow-lg scale-105' 
+                    : 'border-medium/30 hover:border-accent-color/50 hover:bg-dark/20 hover:scale-105'
                 }`}
               >
-                <div className="text-3xl mb-2">{mood.emoji}</div>
-                <div className="text-primary-text font-medium">{mood.name}</div>
+                <div className={`text-3xl sm:text-4xl mb-2 transition-transform duration-300 ${
+                  selectedMood === mood.name ? 'animate-bounce' : 'group-hover:scale-110'
+                }`}>
+                  {mood.emoji}
+                </div>
+                <div className="text-light font-semibold text-sm sm:text-base">{mood.name}</div>
               </button>
             ))}
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-gradient-to-r from-accent-color/10 to-teal-400/10 backdrop-blur-sm border border-accent-color/30 rounded-custom-lg p-6 mb-8 shadow-medium">
-          <h2 className="text-2xl font-semibold text-primary-text mb-6 flex items-center">
-            <span className="mr-3">⚡</span>
+        <div className="bg-gradient-to-r from-accent-color/5 to-teal-400/5 backdrop-blur-sm border border-accent-color/20 rounded-3xl p-6 sm:p-8 mb-8 sm:mb-10 shadow-xl">
+          <h2 className="text-2xl sm:text-3xl font-bold text-light mb-6 flex items-center">
+            <span className="mr-3 text-3xl">⚡</span>
             Quick Actions
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button
-              onClick={() => navigate('/chat')}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 rounded-custom text-white font-semibold shadow-medium hover:shadow-large transition-all duration-300 btn-hover"
-            >
-              <div className="text-3xl mb-2">💬</div>
-              <div>Start AI Chat</div>
-            </button>
-            <button
-              onClick={() => navigate('/journal')}
-              className="bg-gradient-to-r from-green-500 to-teal-600 p-6 rounded-custom text-white font-semibold shadow-medium hover:shadow-large transition-all duration-300 btn-hover"
-            >
-              <div className="text-3xl mb-2">📝</div>
-              <div>Write Journal</div>
-            </button>
-            <button
-              onClick={() => navigate('/meditate')}
-              className="bg-gradient-to-r from-purple-500 to-pink-600 p-6 rounded-custom text-white font-semibold shadow-medium hover:shadow-large transition-all duration-300 btn-hover"
-            >
-              <div className="text-3xl mb-2">🧘‍♀️</div>
-              <div>Meditate Now</div>
-            </button>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {quickActions.map((action, index) => (
+              <button
+                key={action.path}
+                onClick={() => navigate(action.path)}
+                className={`group bg-gradient-to-r ${action.gradient} p-6 sm:p-7 rounded-2xl text-white font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 active:scale-95`}
+              >
+                <div className="text-3xl sm:text-4xl mb-3 group-hover:animate-bounce">{action.icon}</div>
+                <div className="text-base sm:text-lg">{action.name}</div>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Feature Showcase */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10">
           {/* Journaling Card */}
-          <div className="glass rounded-custom-lg p-8 shadow-medium hover:shadow-large transition-all duration-300">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center mr-4">
-                <span className="text-2xl">📔</span>
+          <div className="bg-dark/40 backdrop-blur-sm border border-medium/20 rounded-3xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:bg-dark/50 hover:border-accent-color/30 hover:shadow-2xl">
+            <div className="flex items-center mb-6">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-green-400 to-green-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                <span className="text-2xl sm:text-3xl">📔</span>
               </div>
-              <h3 className="text-2xl font-semibold text-primary-text">Digital Journaling</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-light">Digital Journaling</h3>
             </div>
-            <p className="text-secondary-text mb-6 leading-relaxed">
+            <p className="text-medium mb-6 leading-relaxed text-sm sm:text-base">
               Express your thoughts, track your emotions, and reflect on your personal growth journey with our intelligent journaling system.
             </p>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <CustomButton
                 title="Start Writing"
                 onPress={() => navigate('/journal')}
                 variant="secondary"
-                className="btn-hover"
+                className="transition-all duration-300 hover:scale-105"
               />
-              <div className="text-sm text-secondary-text">
+              <div className="text-sm text-accent-color font-medium">
                 ✨ AI-powered insights
               </div>
             </div>
           </div>
 
           {/* Meditation Card */}
-          <div className="glass rounded-custom-lg p-8 shadow-medium hover:shadow-large transition-all duration-300">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                <span className="text-2xl">🧘‍♀️</span>
+          <div className="bg-dark/40 backdrop-blur-sm border border-medium/20 rounded-3xl p-6 sm:p-8 shadow-xl transition-all duration-300 hover:bg-dark/50 hover:border-accent-color/30 hover:shadow-2xl">
+            <div className="flex items-center mb-6">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-r from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mr-4 shadow-lg">
+                <span className="text-2xl sm:text-3xl">🧘‍♀️</span>
               </div>
-              <h3 className="text-2xl font-semibold text-primary-text">Guided Meditation</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-light">Guided Meditation</h3>
             </div>
-            <p className="text-secondary-text mb-6 leading-relaxed">
+            <p className="text-medium mb-6 leading-relaxed text-sm sm:text-base">
               Find your inner peace with customizable meditation sessions, ambient soundscapes, and mindfulness exercises.
             </p>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <CustomButton
                 title="Begin Session"
                 onPress={() => navigate('/meditate')}
                 variant="secondary"
-                className="btn-hover"
+                className="transition-all duration-300 hover:scale-105"
               />
-              <div className="text-sm text-secondary-text">
+              <div className="text-sm text-accent-color font-medium">
                 🎵 6 ambient sounds
               </div>
             </div>
@@ -212,12 +216,12 @@ const Home: React.FC = () => {
         </div>
 
         {/* Motivational Quote */}
-        <div className="text-center mt-12 p-6 glass rounded-custom-lg">
-          <div className="text-accent-color text-4xl mb-4">💎</div>
-          <blockquote className="text-xl text-primary-text font-medium italic mb-2">
+        <div className="text-center p-6 sm:p-8 bg-dark/30 backdrop-blur-sm border border-medium/20 rounded-3xl shadow-xl">
+          <div className="text-accent-color text-4xl sm:text-5xl mb-4 animate-pulse">💎</div>
+          <blockquote className="text-lg sm:text-xl text-light font-medium italic mb-3 leading-relaxed max-w-4xl mx-auto">
             "The greatest revolution of our generation is the discovery that human beings, by changing the inner attitudes of their minds, can change the outer aspects of their lives."
           </blockquote>
-          <cite className="text-secondary-text">— William James</cite>
+          <cite className="text-medium font-medium">— William James</cite>
         </div>
       </div>
     </div>
