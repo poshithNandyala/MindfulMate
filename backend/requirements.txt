@@ -12,3 +12,5 @@ pydantic~=2.10.6
 langchain-core~=0.3.37
 tqdm
 weaviate-client
+uvicorn
+gunicorn
