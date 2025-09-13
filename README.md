@@ -46,10 +46,3 @@ We welcome contributions! Feel free to submit a pull request or open an issue.
 
 ---
 
-## ✨ **Acknowledgments**
-
-Special thanks to **BrickHack11** for fostering an innovative environment and everyone who contributed ideas to this project!
-
----
-
-**Ready to explore AI-powered mental well-being? Start now!**
