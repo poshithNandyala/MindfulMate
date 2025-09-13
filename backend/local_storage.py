@@ -117,7 +117,7 @@ def get_journals_by_date_local(date_str: str) -> List[Dict]:
     date_journals.sort(key=lambda x: x.get("timestamp", ""))
     return date_journals
 
-def upload_chat_in_conversation_local(user_prompt: str, sentiment_score: float, result: str):
+def upload_chat_in_conversation_local(user_prompt: str, sentiment_score: float, result: str, username: str = None):
     """Upload chat to local conversations storage"""
     chat_id = f"chat_{len(conversations_storage) + 1}_{int(datetime.now().timestamp())}"
     
@@ -126,17 +126,29 @@ def upload_chat_in_conversation_local(user_prompt: str, sentiment_score: float, 
         "user_input": user_prompt,
         "sentiment_score": sentiment_score,
         "response": result,
+        "username": username,  # Add username to local storage
         "timestamp": datetime.now(timezone.utc).isoformat()
     }
     
     conversations_storage.append(conversation)
     save_to_file()
 
-def get_past_conversations_local(limit: int = 10) -> List[Dict]:
-    """Get past conversations from local storage"""
+def get_past_conversations_local(limit: int = 10, username: str = None) -> List[Dict]:
+    """Get past conversations from local storage, filtered by username"""
+    # Always filter by username - if no username provided, return empty list
+    # This prevents anonymous chats from mixing with user chats
+    if username is None:
+        return []
+    
+    # Only include conversations that belong to this specific user
+    filtered_conversations = [
+        conv for conv in conversations_storage 
+        if conv.get("username") == username
+    ]
+    
     # Sort by timestamp descending and limit
     sorted_conversations = sorted(
-        conversations_storage, 
+        filtered_conversations, 
         key=lambda x: x.get("timestamp", ""), 
         reverse=True
     )
@@ -150,14 +162,21 @@ def get_past_conversations_local(limit: int = 10) -> List[Dict]:
     
     return formatted_conversations
 
-def get_chats_by_date_local(date_str: str) -> List[Dict]:
-    """Get chats by date from local storage"""
+def get_chats_by_date_local(date_str: str, username: str = None) -> List[Dict]:
+    """Get chats by date from local storage, filtered by username"""
+    # Always filter by username - if no username provided, return empty list
+    # This prevents anonymous chats from mixing with user chats
+    if username is None:
+        return []
+        
     date_chats = []
     
     for chat in conversations_storage:
         chat_date = chat.get("timestamp", "").split("T")[0]  # Get date part
         if chat_date == date_str:
-            date_chats.append(chat)
+            # Only include chats that belong to this specific user
+            if chat.get("username") == username:
+                date_chats.append(chat)
     
     # Sort by timestamp ascending
     date_chats.sort(key=lambda x: x.get("timestamp", ""))

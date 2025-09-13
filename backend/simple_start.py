@@ -1,38 +1,27 @@
-#!/usr/bin/env python3
-
 """
-Simple backend server startup
+Simple startup script for MindfulMate backend without Weaviate dependencies
+Uses direct Gemini API only
 """
-
 import uvicorn
-import os
-import sys
+import logging
 
-def main():
-    # Change to backend directory
-    backend_dir = os.path.dirname(os.path.abspath(__file__))
-    os.chdir(backend_dir)
-    sys.path.append(backend_dir)
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler()
+    ]
+)
+
+def start_server():
+    """Start the FastAPI server directly"""
+    print("Starting MindfulMate Backend Server...")
+    print("Using Direct Gemini API")
+    print("Server will be available at: http://localhost:8000")
+    print("=" * 50)
     
-    print("=" * 50)
-    print("MindfulMate Backend Server")
-    print("=" * 50)
-    print("Port: 8080")
-    print("Features:")
-    print("- Journal saving (local storage fallback)")
-    print("- Authentication system")
-    print("- Mood-based AI responses") 
-    print("- Gemini API (primary)")
-    print("=" * 50)
-    
-    # Start server
-    uvicorn.run(
-        "fast_api:app",
-        host="127.0.0.1",
-        port=8080,
-        reload=True,
-        log_level="info"
-    )
+    uvicorn.run("fast_api:app", host="0.0.0.0", port=8000, reload=True)
 
 if __name__ == "__main__":
-    main()
+    start_server()

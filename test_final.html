@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Final Chat Test</title>
+</head>
+<body>
+    <h1>MindfulMate Chat Test</h1>
+    <input type="text" id="messageInput" placeholder="Type your message..." style="width: 300px;">
+    <button onclick="sendMessage()">Send</button>
+    <div id="responses" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto;"></div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const responses = document.getElementById('responses');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            responses.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+            input.value = '';
+            
+            try {
+                responses.innerHTML += `<div><em>Thinking...</em></div>`;
+                
+                const response = await fetch('http://localhost:8000/chat/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: message })
+                });
+                
+                const data = await response.json();
+                
+                // Remove "thinking" message
+                const lastDiv = responses.lastElementChild;
+                if (lastDiv && lastDiv.textContent === 'Thinking...') {
+                    lastDiv.remove();
+                }
+                
+                // Add AI response
+                responses.innerHTML += `<div><strong>MindfulMate:</strong> ${data.response}</div>`;
+                responses.scrollTop = responses.scrollHeight;
+                
+            } catch (error) {
+                console.error('Error:', error);
+                responses.innerHTML += `<div style="color: red;"><strong>Error:</strong> ${error.message}</div>`;
+            }
+        }
+        
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Test connection on page load
+        window.onload = async function() {
+            try {
+                const response = await fetch('http://localhost:8000/receive_hello/');
+                const data = await response.json();
+                document.getElementById('responses').innerHTML = `<div style="color: green;">✓ Backend connected: ${data.message}</div>`;
+            } catch (error) {
+                document.getElementById('responses').innerHTML = `<div style="color: red;">✗ Backend not connected. Start the server first.</div>`;
+            }
+        };
+    </script>
+</body>
+</html>

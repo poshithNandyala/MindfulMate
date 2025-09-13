@@ -92,6 +92,11 @@ const Chat: React.FC = () => {
       const response = await chatAPI.sendMessage(messageText);
       console.log('Received response:', response);
       
+      // Check if we have a valid response
+      if (!response || !response.response) {
+        throw new Error('Invalid response format from server');
+      }
+      
       let typedText = '';
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -119,14 +124,25 @@ const Chat: React.FC = () => {
           setIsLoading(false);
         }
       );
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error sending message:', error);
+      console.error('Error details:', error.message);
       setIsLoading(false);
       setIsTyping(false);
       
+      // Show more specific error information
+      let errorText = 'I apologize, but I\'m having trouble connecting right now. ';
+      if (error.message?.includes('Network Error')) {
+        errorText += 'Please check if the backend server is running on port 8000.';
+      } else if (error.message?.includes('timeout')) {
+        errorText += 'The request timed out. Please try again.';
+      } else {
+        errorText += 'Please try again in a moment.';
+      }
+      
       const errorMessage: Message = {
         id: (Date.now() + 2).toString(),
-        text: 'Sorry, I encountered an error. Please try again.',
+        text: errorText,
         isUser: false,
         timestamp: new Date(),
       };
@@ -161,7 +177,7 @@ const Chat: React.FC = () => {
             Back to Home
           </button>
           <div className="text-center">
-            <h1 className="text-3xl font-black gradient-text mb-1">AI Companion</h1>
+            <h1 className="text-3xl font-black gradient-text mb-1">MindfulMate</h1>
             <p className="text-sm text-accent-color font-bold">Powered by Gemini • Always Learning</p>
           </div>
           <button
@@ -202,7 +218,7 @@ const Chat: React.FC = () => {
                 <div className="w-28 h-28 mx-auto bg-gradient-to-r from-accent-color to-teal-400 rounded-full flex items-center justify-center shadow-2xl mb-6 animate-pulse">
                   <span className="text-4xl">🤖</span>
                 </div>
-                <h3 className="text-3xl font-black gradient-text mb-4">Hi! I'm your AI companion</h3>
+                <h3 className="text-3xl font-black gradient-text mb-4">Hi! I'm MindfulMate</h3>
                 <p className="text-lg text-secondary-text max-w-2xl mx-auto leading-relaxed">
                   I'm here to listen and support you. I remember our conversations and learn about you over time.
                 </p>

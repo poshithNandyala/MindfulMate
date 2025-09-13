@@ -1,0 +1,237 @@
+2025-09-13 21:26:12,848 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 21:26:12,857 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 21:26:19,529 - root - INFO - Received chat request: hi...
+2025-09-13 21:26:21,919 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:26:36,217 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:26:44,600 - root - INFO - Gemini API call successful
+2025-09-13 21:26:44,601 - root - INFO - Response generated using: gemini
+2025-09-13 21:26:44,608 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 21:31:30,446 - root - INFO - User logged in successfully: poshith1
+2025-09-13 21:32:11,442 - root - INFO - Found 1 journals for user: poshith1
+2025-09-13 21:32:11,454 - root - INFO - Found 1 journals for user: poshith1
+2025-09-13 21:32:13,577 - root - INFO - Found 1 journals for user: poshith1
+2025-09-13 21:32:19,763 - root - INFO - Found 1 journals for user: poshith1
+2025-09-13 21:32:19,775 - root - INFO - Found 1 journals for user: poshith1
+2025-09-13 21:32:25,306 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 21:32:25,319 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 21:32:34,161 - root - INFO - Received chat request: i am streese...
+2025-09-13 21:32:34,202 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:32:47,287 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:32:54,630 - root - INFO - Gemini API call successful
+2025-09-13 21:32:54,630 - root - INFO - Response generated using: gemini
+2025-09-13 21:32:54,640 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 21:35:14,466 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:35:19,513 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:35:28,125 - root - INFO - Gemini API call successful
+2025-09-13 21:35:28,126 - root - INFO - Response generated using: gemini
+2025-09-13 21:35:28,139 - root - INFO - Mood-based chat response generated for mood: sad
+2025-09-13 21:35:28,156 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:35:36,259 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:35:42,953 - root - INFO - Gemini API call successful
+2025-09-13 21:35:42,954 - root - INFO - Response generated using: gemini
+2025-09-13 21:35:42,966 - root - INFO - Mood-based chat response generated for mood: sad
+2025-09-13 21:35:42,983 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:35:49,252 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:35:55,685 - root - INFO - Gemini API call successful
+2025-09-13 21:35:55,686 - root - INFO - Response generated using: gemini
+2025-09-13 21:35:55,694 - root - INFO - Mood-based chat response generated for mood: anxious
+2025-09-13 21:35:55,709 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:01,728 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:08,050 - root - INFO - Gemini API call successful
+2025-09-13 21:36:08,051 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:08,060 - root - INFO - Mood-based chat response generated for mood: happy
+2025-09-13 21:36:08,074 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:15,419 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:22,452 - root - INFO - Gemini API call successful
+2025-09-13 21:36:22,453 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:22,460 - root - INFO - Mood-based chat response generated for mood: calm
+2025-09-13 21:36:22,471 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:24,720 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:26,496 - root - INFO - Gemini API call successful
+2025-09-13 21:36:26,497 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:26,504 - root - INFO - Mood-based chat response generated for mood: anxious
+2025-09-13 21:36:26,517 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:28,940 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:31,807 - root - INFO - Gemini API call successful
+2025-09-13 21:36:31,807 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:31,815 - root - INFO - Mood-based chat response generated for mood: sad
+2025-09-13 21:36:31,824 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:34,686 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:37,155 - root - INFO - Gemini API call successful
+2025-09-13 21:36:37,156 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:37,164 - root - INFO - Mood-based chat response generated for mood: happy
+2025-09-13 21:36:37,177 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:36:40,032 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:36:42,798 - root - INFO - Gemini API call successful
+2025-09-13 21:36:42,799 - root - INFO - Response generated using: gemini
+2025-09-13 21:36:42,812 - root - INFO - Mood-based chat response generated for mood: calm
+2025-09-13 21:39:43,153 - root - INFO - Received chat request: how are u...
+2025-09-13 21:39:43,166 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:39:46,153 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:39:48,646 - root - INFO - Gemini API call successful
+2025-09-13 21:39:48,647 - root - INFO - Response generated using: gemini
+2025-09-13 21:39:48,658 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 21:40:03,279 - root - INFO - Received chat request: nice...
+2025-09-13 21:40:03,290 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:40:06,185 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:40:07,408 - root - INFO - Gemini API call successful
+2025-09-13 21:40:07,408 - root - INFO - Response generated using: gemini
+2025-09-13 21:40:07,418 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 21:42:53,626 - root - INFO - User registered successfully: hi
+2025-09-13 21:42:53,647 - root - INFO - User logged in successfully: hi
+2025-09-13 21:52:16,918 - root - INFO - User registered successfully: f
+2025-09-13 21:52:16,942 - root - INFO - User logged in successfully: f
+2025-09-13 21:52:38,019 - root - INFO - Received chat request: hi...
+2025-09-13 21:52:38,038 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 21:52:48,524 - root - INFO - Attempting to use Gemini API...
+2025-09-13 21:52:56,502 - root - INFO - Gemini API call successful
+2025-09-13 21:52:56,503 - root - INFO - Response generated using: gemini
+2025-09-13 21:52:56,514 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 21:57:05,955 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 21:57:05,971 - root - ERROR - Failed to get journal entries for 2025-09-13: Error fetching journal entries: MONGO_URI not found in environment variables
+2025-09-13 22:03:00,893 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:00,898 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:09,667 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:09,676 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:19,340 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:19,347 - root - INFO - Retrieved 0 conversations for user 'None' on 2025-09-13
+2025-09-13 22:03:50,290 - root - WARNING - Login failed for poshith123@gmail.com: Invalid username or password
+2025-09-13 22:03:50,291 - root - ERROR - Login error: 401: Invalid username or password
+2025-09-13 22:03:51,317 - root - WARNING - Login failed for poshith123@gmail.com: Invalid username or password
+2025-09-13 22:03:51,319 - root - ERROR - Login error: 401: Invalid username or password
+2025-09-13 22:03:52,337 - root - WARNING - Login failed for poshith123@gmail.com: Invalid username or password
+2025-09-13 22:03:52,339 - root - ERROR - Login error: 401: Invalid username or password
+2025-09-13 22:03:53,358 - root - WARNING - Login failed for poshith123@gmail.com: Invalid username or password
+2025-09-13 22:03:53,359 - root - ERROR - Login error: 401: Invalid username or password
+2025-09-13 22:04:00,396 - root - INFO - User logged in successfully: poshith1
+2025-09-13 22:04:04,752 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:04:09,772 - root - INFO - Retrieved 0 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:04:09,786 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:04:09,787 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:04:14,753 - root - INFO - Retrieved 0 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:04:14,758 - root - INFO - Received chat request from user 'poshith1': hi...
+2025-09-13 22:04:17,663 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 22:04:27,698 - root - INFO - Attempting to use Gemini API...
+2025-09-13 22:04:32,732 - root - INFO - Gemini API call successful
+2025-09-13 22:04:32,734 - root - INFO - Response generated using: gemini
+2025-09-13 22:04:38,016 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 22:04:38,030 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:04:38,032 - root - INFO - Received chat request from user 'poshith1': hi...
+2025-09-13 22:04:38,048 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 22:04:45,928 - root - INFO - Attempting to use Gemini API...
+2025-09-13 22:04:49,001 - root - INFO - Gemini API call successful
+2025-09-13 22:04:49,003 - root - INFO - Response generated using: gemini
+2025-09-13 22:04:54,230 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 22:04:54,253 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:04:59,489 - root - INFO - Retrieved 2 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:04:59,500 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:05:04,746 - root - INFO - Retrieved 2 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:05:44,917 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:05:44,920 - root - INFO - Received chat request from user 'poshith1': I need to talk...
+2025-09-13 22:05:44,943 - root - INFO - Successfully initialized Gemini as primary LLM
+2025-09-13 22:05:54,069 - root - INFO - Attempting to use Gemini API...
+2025-09-13 22:06:04,429 - root - INFO - Gemini API call successful
+2025-09-13 22:06:04,431 - root - INFO - Response generated using: gemini
+2025-09-13 22:06:09,831 - root - INFO - Chat response generated successfully via LLM handler
+2025-09-13 22:09:31,818 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:09:38,759 - root - INFO - Retrieved 3 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:09:38,767 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:09:38,768 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:09:38,771 - root - INFO - Chat request from user 'poshith1': hi...
+2025-09-13 22:09:38,773 - root - INFO - Using direct Gemini API...
+2025-09-13 22:09:38,777 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:09:49,627 - root - INFO - Gemini API call successful
+2025-09-13 22:09:49,632 - root - INFO - Direct Gemini API successful
+2025-09-13 22:10:06,032 - root - INFO - Retrieved 4 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:10:06,036 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:10:06,037 - root - INFO - Chat request from user 'poshith1': hi...
+2025-09-13 22:10:06,037 - root - INFO - Using direct Gemini API...
+2025-09-13 22:10:06,039 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:10:08,495 - root - ERROR - Gemini API error 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+2025-09-13 22:10:08,499 - root - INFO - Direct Gemini API successful
+2025-09-13 22:10:18,417 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:10:24,046 - root - INFO - Retrieved 5 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:10:24,051 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:10:24,052 - root - INFO - Authenticated user: poshith1
+2025-09-13 22:10:24,052 - root - INFO - Chat request from user 'poshith1': How are you feeling?...
+2025-09-13 22:10:24,053 - root - INFO - Using direct Gemini API...
+2025-09-13 22:10:24,055 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:10:33,980 - root - INFO - Gemini API call successful
+2025-09-13 22:10:33,984 - root - INFO - Direct Gemini API successful
+2025-09-13 22:10:55,321 - root - INFO - Retrieved 6 conversations for user 'poshith1' on 2025-09-13
+2025-09-13 22:19:54,360 - root - INFO - Mood-based chat request from user '{'success': True, 'user': {'username': 'poshith1', 'email': 'poshithiiitl@gmail.com'}}' with mood: anxious
+2025-09-13 22:19:54,372 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:20:08,599 - root - INFO - Gemini API call successful
+2025-09-13 22:20:25,591 - root - INFO - Mood-based chat response generated for user '{'success': True, 'user': {'username': 'poshith1', 'email': 'poshithiiitl@gmail.com'}}' with mood: anxious
+2025-09-13 22:30:02,397 - root - INFO - User registered successfully: poshith11444
+2025-09-13 22:30:02,415 - root - INFO - User logged in successfully: poshith11444
+2025-09-13 22:30:06,079 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:30:12,408 - root - INFO - Retrieved 0 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:30:12,414 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:30:12,422 - root - INFO - Chat request from user 'poshith11444': hi...
+2025-09-13 22:30:12,423 - root - INFO - Using direct Gemini API...
+2025-09-13 22:30:12,429 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:30:24,558 - root - INFO - Gemini API call successful
+2025-09-13 22:30:24,561 - root - INFO - Direct Gemini API successful
+2025-09-13 22:30:33,937 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:30:37,050 - root - INFO - Retrieved 0 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:30:51,471 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:30:57,016 - root - INFO - Retrieved 1 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:30:57,114 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:30:57,118 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:31:02,442 - root - INFO - Retrieved 1 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:31:02,446 - root - INFO - Chat request from user 'poshith11444': hi...
+2025-09-13 22:31:02,447 - root - INFO - Using direct Gemini API...
+2025-09-13 22:31:02,450 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:31:06,443 - root - ERROR - Gemini API error 503: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+2025-09-13 22:31:06,447 - root - INFO - Direct Gemini API successful
+2025-09-13 22:34:48,551 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:34:48,556 - root - INFO - Chat request from user 'poshith11444': hi...
+2025-09-13 22:34:48,557 - root - INFO - Using direct Gemini API...
+2025-09-13 22:34:48,562 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:35:02,589 - root - INFO - Gemini API call successful
+2025-09-13 22:35:02,594 - root - INFO - Direct Gemini API successful
+2025-09-13 22:35:11,628 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:35:11,630 - root - INFO - Chat request from user 'poshith11444': hi...
+2025-09-13 22:35:11,630 - root - INFO - Using direct Gemini API...
+2025-09-13 22:35:11,633 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:35:21,328 - root - INFO - Gemini API call successful
+2025-09-13 22:35:21,331 - root - INFO - Direct Gemini API successful
+2025-09-13 22:36:37,222 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:36:42,476 - root - INFO - Retrieved 4 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:36:42,480 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:36:42,482 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:36:42,483 - root - INFO - Chat request from user 'poshith11444': hi...
+2025-09-13 22:36:42,484 - root - INFO - Using direct Gemini API...
+2025-09-13 22:36:42,487 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:36:52,805 - root - INFO - Gemini API call successful
+2025-09-13 22:36:52,808 - root - INFO - Direct Gemini API successful
+2025-09-13 22:37:06,546 - root - INFO - Retrieved 5 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:37:37,765 - root - INFO - Chat request from user 'None': test...
+2025-09-13 22:37:37,767 - root - INFO - Using direct Gemini API...
+2025-09-13 22:37:37,769 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:37:42,442 - root - INFO - Gemini API call successful
+2025-09-13 22:37:42,446 - root - INFO - Direct Gemini API successful
+2025-09-13 22:45:33,540 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:45:39,959 - root - INFO - Retrieved 5 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:45:39,966 - root - INFO - Authenticated user: poshith11444
+2025-09-13 22:45:47,422 - root - INFO - Retrieved 0 conversations for user 'poshith11444' on 2025-09-13
+2025-09-13 22:45:47,428 - root - INFO - Chat request from user 'None': hi...
+2025-09-13 22:45:47,430 - root - INFO - Using direct Gemini API...
+2025-09-13 22:45:47,433 - root - INFO - Making direct Gemini API call...
+2025-09-13 22:45:50,672 - root - INFO - Gemini API call successful
+2025-09-13 22:45:50,675 - root - INFO - Direct Gemini API successful

@@ -5,5 +5,117 @@
     "sentiment_score": 0.5,
     "response": "Hello there!  Thanks for sending a test message.  It takes courage to reach out, even if it's just a test.  Is there anything you'd like to talk about today, or is there anything I can help you with?  Remember, you're not alone, and I'm here to listen without judgment.",
     "timestamp": "2025-09-13T13:49:24.410407+00:00"
+  },
+  {
+    "_id": "chat_2_1757779004",
+    "user_input": "hi",
+    "sentiment_score": -0.2,
+    "response": "Hi.  It sounds like you might need a little space today. That's okay.  Is there anything at all you'd like to share, or would you simply prefer to sit with this feeling for a while?  I'm here for you, whatever you need.",
+    "timestamp": "2025-09-13T15:56:44.603500+00:00"
+  },
+  {
+    "_id": "chat_3_1757779374",
+    "user_input": "i am streese",
+    "sentiment_score": 0.2,
+    "response": "It sounds like you're carrying a heavy load right now.  That can be really tough.  Tell me, is there anything you'd like to talk about that might help ease some of that weight?  Or would you prefer to just sit with it for a bit longer?  Either way is perfectly okay.",
+    "timestamp": "2025-09-13T16:02:54.634574+00:00"
+  },
+  {
+    "_id": "chat_4_1757779528",
+    "user_input": "\n            CONTEXT: The user is feeling sad. Respond with empathy and compassion. Offer comfort, understanding, and gentle support.\n            \n            USER MESSAGE: I'm feeling sad today. I could use some gentle support and understanding words.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": -0.2,
+    "response": "It sounds like today has been a difficult one.  Feeling sad is a perfectly valid emotion, and it's okay to feel this way.  It takes strength to acknowledge those feelings.  Is there anything you'd like to share about what's making you feel sad, or would you prefer to just sit with it for a while?  I'm here to listen without judgment, whatever you need.",
+    "timestamp": "2025-09-13T16:05:28.131883+00:00"
+  },
+  {
+    "_id": "chat_5_1757779542",
+    "user_input": "\n            CONTEXT: The user is feeling sad. Respond with empathy and compassion. Offer comfort, understanding, and gentle support.\n            \n            USER MESSAGE: I'm feeling sad today. I could use some gentle support and understanding words.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": -0.2,
+    "response": "It sounds like today is bringing some difficult feelings.  It's okay to feel sad; it's a valid emotion.  Knowing you're allowing yourself to feel this way takes strength.  Is there anything at all you'd like to talk about, or would you simply prefer to sit with this for a little while?  I'm here to listen, whatever you need.",
+    "timestamp": "2025-09-13T16:05:42.958814+00:00"
+  },
+  {
+    "_id": "chat_6_1757779555",
+    "user_input": "\n            CONTEXT: The user is feeling anxious. Respond with reassurance and grounding techniques. Help them feel safe and provide coping strategies.\n            \n            USER MESSAGE: I'm feeling anxious right now. Can you help me feel more grounded and provide some calming words?\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.2,
+    "response": "It sounds like things feel a bit overwhelming right now.  That's completely understandable.  Anxiety can be a difficult experience.  Let's try to find a way to bring you back to the present moment.  Perhaps focusing on your breath, noticing the feeling of your feet on the floor, or even just the air on your skin might help.  Is there anything in your immediate surroundings you can focus on – a sound, a color, a texture?  Just noticing these things can sometimes help to ease the intensity.  I'm here with you, and I want you to know you're safe.",
+    "timestamp": "2025-09-13T16:05:55.689176+00:00"
+  },
+  {
+    "_id": "chat_7_1757779568",
+    "user_input": "\n            CONTEXT: The user is feeling happy. Respond with joy and positivity. Share in their happiness and encourage their positive energy.\n            \n            USER MESSAGE: Hi there! I'm feeling really happy today! Share in my joy and give me some positive energy.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.9227328896522522,
+    "response": "That's wonderful to hear!  It's lovely when happiness finds you.  What's bringing you so much joy today?  I'm so happy for you.",
+    "timestamp": "2025-09-13T16:06:08.054513+00:00"
+  },
+  {
+    "_id": "chat_8_1757779582",
+    "user_input": "\n            CONTEXT: The user is feeling calm. Respond in a peaceful, zen-like manner. Use calming language and encourage mindfulness.\n            \n            USER MESSAGE: Hello, I'm feeling calm today. I'd like some peaceful thoughts and mindfulness advice.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.5120471119880676,
+    "response": "Hello.  It sounds peaceful within you today. That’s a lovely feeling to cultivate.  Perhaps you could notice the stillness in your breath, or the quiet rhythm of your heartbeat.  Allowing yourself to simply be present in this moment, without judgment, can deepen that sense of calm.  What small things are you noticing that contribute to this feeling?",
+    "timestamp": "2025-09-13T16:06:22.456540+00:00"
+  },
+  {
+    "_id": "chat_9_1757779586",
+    "user_input": "\n            CONTEXT: The user is feeling anxious. Respond with reassurance and grounding techniques. Help them feel safe and provide coping strategies.\n            \n            USER MESSAGE: I'm feeling anxious right now. Can you help me feel more grounded and provide some calming words?\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.2,
+    "response": "It sounds like things feel a bit overwhelming at the moment.  That's perfectly okay.  Sometimes, even just acknowledging that feeling is a big step.  To help ground yourself, perhaps you could try focusing on your breath – noticing the rise and fall of your chest or the coolness of the air as it enters your nostrils.  Even a simple physical sensation, like the weight of your body in your chair, can help bring you back to the present.  Is there anything you're able to focus on right now – a sound, a smell, a taste –  that helps you feel more present in this moment?  Remember, you're safe, and you're not alone.",
+    "timestamp": "2025-09-13T16:06:26.499356+00:00"
+  },
+  {
+    "_id": "chat_10_1757779591",
+    "user_input": "\n            CONTEXT: The user is feeling sad. Respond with empathy and compassion. Offer comfort, understanding, and gentle support.\n            \n            USER MESSAGE: I'm feeling sad today. I could use some gentle support and understanding words.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": -0.2,
+    "response": "It sounds like today's been a bit heavy for you.  That's okay.  It's alright to feel sad sometimes.  We all have those days.  Is there anything you'd like to share about what's weighing on your heart, or would you prefer simply to have some quiet companionship for a while?  I'm here to listen, without judgment, and offer whatever support feels right for you.",
+    "timestamp": "2025-09-13T16:06:31.810032+00:00"
+  },
+  {
+    "_id": "chat_11_1757779597",
+    "user_input": "\n            CONTEXT: The user is feeling happy. Respond with joy and positivity. Share in their happiness and encourage their positive energy.\n            \n            USER MESSAGE: Hi there! I'm feeling really happy today! Share in my joy and give me some positive energy.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.9227328896522522,
+    "response": "That's wonderful to hear! It's lovely when happiness finds us.  What's contributing to this feeling of joy today?  I'm happy for you.  Let's hold onto this feeling for a while.",
+    "timestamp": "2025-09-13T16:06:37.158668+00:00"
+  },
+  {
+    "_id": "chat_12_1757779602",
+    "user_input": "\n            CONTEXT: The user is feeling calm. Respond in a peaceful, zen-like manner. Use calming language and encourage mindfulness.\n            \n            USER MESSAGE: Hello, I'm feeling calm today. I'd like some peaceful thoughts and mindfulness advice.\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.5120471119880676,
+    "response": "Hello.  That sounds lovely.  To further cultivate this calm, perhaps you could gently bring your attention to your breath, noticing the natural rhythm of your inhales and exhales.  Or, you could focus on a pleasant sensation in your body – the warmth of the sun, perhaps, or the feeling of your feet on the floor.  These small moments of awareness can help to deepen the peace you're already feeling.  What small details are you noticing in this calm space?",
+    "timestamp": "2025-09-13T16:06:42.804447+00:00"
+  },
+  {
+    "_id": "chat_13_1757779788",
+    "user_input": "how are u",
+    "sentiment_score": 0.2,
+    "response": "I'm doing well, thank you for asking.  How about you?  Is there anything you'd like to share about what's on your mind today?",
+    "timestamp": "2025-09-13T16:09:48.650795+00:00"
+  },
+  {
+    "_id": "chat_14_1757779807",
+    "user_input": "nice",
+    "sentiment_score": 0.6833009123802185,
+    "response": "That's good to hear.  Is there anything else you'd like to share today, or are you feeling comfortable simply enjoying this moment?",
+    "timestamp": "2025-09-13T16:10:07.411929+00:00"
+  },
+  {
+    "_id": "chat_15_1757780576",
+    "user_input": "hi",
+    "sentiment_score": -0.2,
+    "response": "Hi there.  How are you feeling today?",
+    "timestamp": "2025-09-13T16:22:56.506761+00:00"
+  },
+  {
+    "_id": "chat_16_1757782225",
+    "user_input": "\n            CONTEXT: The user is feeling anxious. Respond with reassurance and grounding techniques. Help them feel safe and provide coping strategies.\n            \n            USER MESSAGE: I'm feeling anxious right now. Can you help me feel more grounded and provide some calming words?\n            \n            Please respond as a caring mental health companion, taking their current mood into account.\n            ",
+    "sentiment_score": 0.2,
+    "response": "Oh, honey, I hear you.  It sounds like you're feeling quite anxious right now, and that takes a lot of courage to share.  It's okay to feel this way; anxiety is a tough visitor sometimes.  Let's gently work together to help you feel a little more grounded and calm.\n\nTell me, what specifically is making you feel anxious right now?  There's no pressure to share if you don't feel comfortable, but sometimes just naming it can help.  Even if it's just a general feeling, that's perfectly fine.\n\nIn the meantime, perhaps we can try a simple grounding technique.  Could you try noticing five things you can see around you?  Take your time with each one, really observing the details.  Then, four things you can touch – maybe the texture of your clothing, or the surface of a table. Then three things you can hear. Two things you can smell, and finally, one thing you can taste.\n\nThis might seem small, but bringing your awareness to your senses can help pull you back into the present moment, away from the anxious thoughts that might be swirling around.  We can explore other techniques too, if this one doesn't quite feel right for you.  Just let me know what feels comfortable.  I'm here with you, and I want you to know you're safe.",
+    "username": {
+      "success": true,
+      "user": {
+        "username": "poshith1",
+        "email": "poshithiiitl@gmail.com"
+      }
+    },
+    "timestamp": "2025-09-13T16:50:25.587071+00:00"
   }
 ]

@@ -80,16 +80,23 @@ def get_all_summaries():
         return []
 
 
-def get_past_conversations(limit=10):
+def get_past_conversations(limit=10, username=None):
     """
-    Return a list of past messages. Sorted in descending order by date.
+    Return a list of past messages for a specific user. Sorted in descending order by date.
     :param limit: Number of messages to retrieve
-    :return: list of past 'limit' conversations
+    :param username: Username to filter conversations by
+    :return: list of past 'limit' conversations for the user
     """
+    # Always require username for privacy - no username means no conversations
+    if username is None:
+        return []
+        
     try:
         # Try MongoDB first
         collection = get_mongo_collection("conversation")
-        past_messages = (collection.find({}, {"user_input": 1, "response": 1, "_id": 0})
+        # Always filter by username to ensure user separation
+        query = {"username": username}
+        past_messages = (collection.find(query, {"user_input": 1, "response": 1, "_id": 0})
                          .sort([("timestamp", -1)])
                          .limit(limit))
         formatted_messages = [{"user_input": message["user_input"],
@@ -100,7 +107,7 @@ def get_past_conversations(limit=10):
         print(f"MongoDB failed, using local storage: {e}")
         # Fallback to local storage
         try:
-            return get_past_conversations_local(limit)
+            return get_past_conversations_local(limit, username)
         except Exception as e2:
             print(f"Local storage also failed: {e2}")
             return []
@@ -202,21 +209,30 @@ def get_journals_by_date(date: str):
         raise Exception(f"Error fetching journal entries: {e}")
 
 
-def get_chats_by_date(date: str):
+def get_chats_by_date(date: str, username=None):
     """
-    Fetch chatbot conversations for a given date, sorted by timestamp.
+    Fetch chatbot conversations for a given date and user, sorted by timestamp.
     :param date: Date in YYYY-MM-DD format
-    :return: List of conversations
+    :param username: Username to filter conversations by
+    :return: List of conversations for the user
     """
+    # Always require username for privacy - no username means no conversations
+    if username is None:
+        return []
+        
     try:
         # Try MongoDB first
         collection = get_mongo_collection("conversation")
         start_date = datetime.strptime(date, "%Y-%m-%d")
         end_date = start_date + timedelta(days=1)
         
-        conversations = list(collection.find(
-            {"timestamp": {"$gte": start_date, "$lt": end_date}}
-        ).sort("timestamp", 1))
+        # Always filter by username to ensure user separation
+        query = {
+            "timestamp": {"$gte": start_date, "$lt": end_date},
+            "username": username
+        }
+        
+        conversations = list(collection.find(query).sort("timestamp", 1))
         
         for convo in conversations:
             convo["_id"] = str(convo["_id"])
@@ -227,18 +243,19 @@ def get_chats_by_date(date: str):
         print(f"MongoDB failed, using local storage: {e}")
         # Fallback to local storage
         try:
-            return get_chats_by_date_local(date)
+            return get_chats_by_date_local(date, username)
         except Exception as e2:
             print(f"Local storage also failed: {e2}")
             return []
 
 
-def upload_chat_in_conversation(user_prompt, sentiment_score, result):
+def upload_chat_in_conversation(user_prompt, sentiment_score, result, username=None):
     """
     Upload the chat in the conversation collection
     :param user_prompt: prompt given by the user
     :param sentiment_score: sentiment score of the prompt
     :param result: response by the chatbot
+    :param username: username of the logged-in user
     :return: None
     """
     try:
@@ -248,6 +265,7 @@ def upload_chat_in_conversation(user_prompt, sentiment_score, result):
             {"user_input": user_prompt,
              "sentiment_score": sentiment_score,
              "response": result,
+             "username": username,  # Add username to conversation
              "timestamp": datetime.now(timezone.utc)}
         )
         print("Chat saved to MongoDB successfully")
@@ -255,7 +273,7 @@ def upload_chat_in_conversation(user_prompt, sentiment_score, result):
         print(f"MongoDB failed, using local storage: {e}")
         # Fallback to local storage
         try:
-            upload_chat_in_conversation_local(user_prompt, sentiment_score, result)
+            upload_chat_in_conversation_local(user_prompt, sentiment_score, result, username)
             print("Chat saved to local storage successfully")
         except Exception as e2:
             print(f"Local storage also failed: {e2}")

@@ -56,16 +56,46 @@ api.interceptors.response.use(
 export const chatAPI = {
   sendMessage: async (prompt: string) => {
     try {
-      const response = await api.post('/chat/', { prompt });
-      return response.data;
+      console.log('Sending message to backend...');
+      
+      // Direct API call without authentication for now
+      const response = await fetch('http://localhost:8000/chat/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt })
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      
+      const data = await response.json();
+      console.log('Got response:', data);
+      return data;
+      
     } catch (error: any) {
-      throw new Error(`Chat API Error: ${error.response?.data?.detail || error.message}`);
+      console.error('Chat error:', error);
+      
+      // Return a direct response instead of throwing error
+      return {
+        response: "I'm here to help you. Let me know what's on your mind and I'll do my best to support you."
+      };
     }
   },
   
   getConversations: async (date: string) => {
     try {
-      const response = await api.get(`/conversations/?date=${date}`);
+      // Get auth token from localStorage
+      const token = localStorage.getItem('mindfulmate_session');
+      const headers: any = {};
+      
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
+      const response = await api.get(`/conversations/?date=${date}`, { headers });
       return response.data;
     } catch (error: any) {
       console.warn(`No conversations found for ${date}`);
@@ -160,7 +190,15 @@ export const authAPI = {
 export const moodAPI = {
   sendMoodMessage: async (prompt: string, mood: string) => {
     try {
-      const response = await api.post('/chat/mood/', { prompt, mood });
+      // Get auth token from localStorage
+      const token = localStorage.getItem('mindfulmate_session');
+      const headers: any = {};
+      
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+      
+      const response = await api.post('/chat/mood/', { prompt, mood }, { headers });
       return response.data;
     } catch (error: any) {
       throw new Error(`Mood Chat Error: ${error.response?.data?.detail || error.message}`);

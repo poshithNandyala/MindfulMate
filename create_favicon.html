@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator for MindfulMate</title>
+</head>
+<body>
+    <canvas id="favicon" width="32" height="32"></canvas>
+    <canvas id="logo192" width="192" height="192"></canvas>
+    <canvas id="logo512" width="512" height="512"></canvas>
+    
+    <script>
+        function createLogo(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#4fd1c7');
+            gradient.addColorStop(1, '#3b82f6');
+            
+            // Fill background with gradient
+            ctx.fillStyle = gradient;
+            ctx.roundRect(0, 0, size, size, size/4);
+            ctx.fill();
+            
+            // Draw "M" text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size * 0.6}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('M', size/2, size/2);
+            
+            // Convert to downloadable image
+            const link = document.createElement('a');
+            link.download = canvasId + '.png';
+            link.href = canvas.toDataURL();
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Wait for page to load then create logos
+        window.onload = function() {
+            setTimeout(() => {
+                createLogo('favicon', 32);
+                setTimeout(() => createLogo('logo192', 192), 100);
+                setTimeout(() => createLogo('logo512', 512), 200);
+            }, 100);
+        };
+    </script>
+</body>
+</html>

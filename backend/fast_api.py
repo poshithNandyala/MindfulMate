@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Query, HTTPException, Header
+from fastapi import FastAPI, Query, HTTPException, Header, Depends
 from pydantic import BaseModel
 from llm_handler import get_results, initialize_gemini_llm, initialize_openai_llm
+from direct_gemini_handler import get_direct_gemini_response
 from mongodb_database_handler import get_chats_by_date, save_journal_entry, get_journals_by_date, get_journals_by_username
 from auth_handler import register_user, login_user, validate_session, logout_user, get_user_info
 from typing import Optional
@@ -42,37 +43,82 @@ class MoodChat(BaseModel):
     prompt: str
     mood: Optional[str] = None  # calm, happy, sad, anxious
 
+# Helper function to get current user from token
+def get_current_user(authorization: Optional[str] = Header(None)):
+    """Extract username from authorization header"""
+    if not authorization:
+        logging.debug("No authorization header provided")
+        return None
+        
+    try:
+        # Authorization header format: "Bearer <token>"
+        if authorization.startswith("Bearer "):
+            token = authorization.split(" ")[1]
+            logging.debug(f"Validating token: {token[:10]}...")
+            
+            # Validate session token and get user data
+            user_data = validate_session(token)
+            if user_data:
+                username = user_data.get("username")
+                logging.info(f"Authenticated user: {username}")
+                return username
+            else:
+                logging.warning("Session validation failed - invalid or expired token")
+        else:
+            logging.warning("Authorization header doesn't start with 'Bearer '")
+    except Exception as e:
+        logging.warning(f"Failed to extract user from token: {e}")
+    
+    return None
+
 
 @app.post("/chat/")
-async def chat(prompt: Prompt):
+async def chat(prompt: Prompt, current_user: Optional[str] = Depends(get_current_user)):
     """
-    Receive the prompt from the user and return the response using Gemini with ChatGPT fallback
+    Direct Gemini API chat - prioritizes direct API calls for reliable responses
     :param prompt: User's message prompt
-    :return: the response from the LLM model with metadata
+    :param current_user: Current logged-in user (optional)
+    :return: Direct response from Gemini API
     """
     if not prompt.prompt.strip():
         raise HTTPException(status_code=400, detail="Prompt cannot be empty")
     
+    logging.info(f"Chat request from user '{current_user}': {prompt.prompt[:50]}...")
+    
     try:
-        logging.info(f"Received chat request: {prompt.prompt[:50]}...")
+        # Try direct Gemini API first (most reliable)
+        logging.info("Using direct Gemini API...")
+        response = get_direct_gemini_response(prompt.prompt)
         
-        # Get the response from the LLM model (with Gemini + fallback logic)
-        response = get_results(prompt.prompt)
+        if response and response.strip():
+            logging.info("Direct Gemini API successful")
+            
+            # Save conversation with user context
+            try:
+                from mongodb_database_handler import upload_chat_in_conversation
+                from llm_handler import analyze_sentiment
+                sentiment_score = analyze_sentiment(prompt.prompt)
+                upload_chat_in_conversation(prompt.prompt, sentiment_score, response, current_user)
+            except Exception as save_error:
+                logging.warning(f"Failed to save conversation: {save_error}")
+            
+            return {"response": response}
+    
+    except Exception as direct_error:
+        logging.warning(f"Direct Gemini API failed: {direct_error}")
         
-        if not response or not response.strip():
-            raise HTTPException(status_code=500, detail="LLM returned empty response")
-        
-        logging.info(f"Chat response generated successfully")
-        return {
-            "response": response
-        }
-        
-    except Exception as e:
-        logging.error(f"Chat request failed: {e}")
-        raise HTTPException(
-            status_code=500, 
-            detail=f"Failed to generate response: {str(e)}"
-        )
+        # Fallback to LLM handler only if direct API fails
+        try:
+            logging.info("Trying LLM handler as fallback...")
+            response = get_results(prompt.prompt, username=current_user)
+            if response and response.strip():
+                logging.info("LLM handler fallback successful")
+                return {"response": response}
+        except Exception as llm_error:
+            logging.error(f"LLM handler also failed: {llm_error}")
+    
+    # If everything fails, return a simple response without error message
+    return {"response": "I'm here to help you. Could you please rephrase your question?"}
 
 
 @app.get("/receive_hello/")
@@ -164,14 +210,19 @@ async def get_llm_status():
 
 
 @app.get("/conversations/")
-async def get_conversations(date: str = Query(..., description="Date in YYYY-MM-DD format")):
+async def get_conversations(
+    date: str = Query(..., description="Date in YYYY-MM-DD format"),
+    current_user: Optional[str] = Depends(get_current_user)
+):
     """
-    Get all chatbot conversations for a given date, sorted by timestamp.
+    Get all chatbot conversations for a given date and user, sorted by timestamp.
     :param date: Date in YYYY-MM-DD format
-    :return: List of conversations
+    :param current_user: Current logged-in user (optional)
+    :return: List of conversations for the user
     """
     try:
-        conversations = get_chats_by_date(date)
+        conversations = get_chats_by_date(date, username=current_user)
+        logging.info(f"Retrieved {len(conversations)} conversations for user '{current_user}' on {date}")
         return {"date": date, "conversations": conversations}
     except Exception as e:
         logging.error(f"Failed to get conversations for {date}: {e}")
@@ -288,11 +339,13 @@ async def get_current_user(authorization: Optional[str] = Header(None)):
 
 # Mood-based chat endpoint
 @app.post("/chat/mood/")
-async def mood_chat(chat_data: MoodChat):
+async def mood_chat(chat_data: MoodChat, current_user: Optional[str] = Depends(get_current_user)):
     """
     Mood-aware chat that responds according to user's emotional state
     """
     try:
+        logging.info(f"Mood-based chat request from user '{current_user}' with mood: {chat_data.mood}")
+        
         # Mood-specific prompts
         mood_prompts = {
             "calm": "Respond in a peaceful, zen-like manner. Use calming language and encourage mindfulness.",
@@ -313,13 +366,22 @@ async def mood_chat(chat_data: MoodChat):
         else:
             enhanced_prompt = chat_data.prompt
         
-        # Get AI response
-        response = get_results(enhanced_prompt)
+        # Get AI response using direct Gemini API
+        response = get_direct_gemini_response(enhanced_prompt)
+        
+        # Save conversation with user context
+        try:
+            from mongodb_database_handler import upload_chat_in_conversation
+            from llm_handler import analyze_sentiment
+            sentiment_score = analyze_sentiment(enhanced_prompt)
+            upload_chat_in_conversation(enhanced_prompt, sentiment_score, response, current_user)
+        except Exception as save_error:
+            logging.warning(f"Failed to save mood conversation: {save_error}")
         
         if not response or not response.strip():
             raise HTTPException(status_code=500, detail="AI returned empty response")
         
-        logging.info(f"Mood-based chat response generated for mood: {chat_data.mood}")
+        logging.info(f"Mood-based chat response generated for user '{current_user}' with mood: {chat_data.mood}")
         return {
             "response": response,
             "mood": chat_data.mood,

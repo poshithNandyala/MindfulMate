@@ -13,7 +13,7 @@ interface MoodData {
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, logout } = useAuth();
   const [greeting, setGreeting] = useState('');
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [moodResponse, setMoodResponse] = useState<string>('');
@@ -108,6 +108,13 @@ const Home: React.FC = () => {
               <div className="w-12 h-12 bg-gradient-to-r from-accent-color to-teal-400 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">{user?.username?.charAt(0).toUpperCase()}</span>
               </div>
+              <CustomButton
+                title="Logout"
+                onPress={logout}
+                variant="secondary"
+                size="sm"
+                className="ml-2"
+              />
             </div>
           ) : (
             <div className="flex gap-3">
@@ -205,7 +212,7 @@ const Home: React.FC = () => {
               <span className="mr-3 text-3xl">
                 {moods.find(m => m.name === selectedMood)?.emoji || '💭'}
               </span>
-              Your AI Companion Response
+              Your MindfulMate Response
             </h2>
             <div className="bg-dark/20 rounded-2xl p-4 sm:p-6 border border-accent-color/20">
               <p className="text-light leading-relaxed text-base sm:text-lg">

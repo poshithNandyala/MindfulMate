@@ -12,9 +12,14 @@ from transformers import pipeline
 from mongodb_database_handler import (upload_chat_in_conversation,
                                       get_past_conversations,
                                       get_all_summaries)
-# Weaviate imports
-import weaviate
-import weaviate.classes as wvc
+# Weaviate imports (optional)
+try:
+    import weaviate
+    import weaviate.classes as wvc
+    WEAVIATE_AVAILABLE = True
+except ImportError:
+    WEAVIATE_AVAILABLE = False
+    print("Weaviate not available - vector search disabled")
 # Other imports
 import os
 import logging
@@ -380,11 +385,12 @@ def invoke_llm_with_fallback(chain, primary_llm, fallback_llm, primary_type):
         else:
             raise Exception(f"LLM call failed and no fallback available: {error_msg}")
 
-def get_results(user_prompt):
+def get_results(user_prompt, username=None):
     """
     Receives user's prompt from the user. Invokes the LLM model to get the response.
     Uses Gemini as primary with ChatGPT as fallback.
     :param user_prompt: the user's input query
+    :param username: the username of the logged-in user
     :return: the response from the LLM model
     """
     # Initialize LLM with fallback mechanism
@@ -399,9 +405,9 @@ def get_results(user_prompt):
     # Get system prompt
     system_prompt = get_system_prompt()
 
-    # Short Term Context - Last 10 conversation (with error handling)
+    # Short Term Context - Last 10 conversation for this user (with error handling)
     try:
-        past_conversations = get_past_conversations(limit=10)
+        past_conversations = get_past_conversations(limit=10, username=username)
         past_conversations_context = "\n".join([f"user_input: {msg['user_input']}\nresponse: {msg['response']}"
                                                 for msg in past_conversations])
     except Exception as e:
@@ -446,9 +452,9 @@ def get_results(user_prompt):
     # Log which model was used
     logging.info(f"Response generated using: {used_model}")
 
-    # Upload the chat in the conversation collection (with local storage fallback)
+    # Upload the chat in the conversation collection with username (with local storage fallback)
     try:
-        upload_chat_in_conversation(user_prompt, sentiment_score, result)
+        upload_chat_in_conversation(user_prompt, sentiment_score, result, username)
     except Exception as e:
         logging.warning(f"Failed to save chat conversation: {e}")
         # Don't fail the whole chat if saving fails
@@ -462,25 +468,37 @@ def retrieve_relevant_chunks(user_prompt, top_k=5):
     :param top_k: Number of relevant results to return
     :return: List of relevant text chunks with session ID and similarity score
     """
+    
+    # Return empty list if Weaviate is not available
+    if not WEAVIATE_AVAILABLE:
+        logging.info("Weaviate not available - skipping vector search")
+        return []
 
     # Load environment variables
     load_dotenv()
     WCD_URL = os.getenv("WCD_URL")
     WCD_API_KEY = os.getenv("WCD_API_KEY")
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    
     # Check if environment variables are set (OPENAI_API_KEY is optional)
     if not WCD_URL or not WCD_API_KEY:
-        raise ValueError("ERROR: Missing required environment variables in .env file!")
+        logging.warning("Weaviate credentials not configured - skipping vector search")
+        return []
     
     # Warn if OpenAI API key is missing but don't fail
     if not OPENAI_API_KEY:
-        print("WARNING: OPENAI_API_KEY not found - OpenAI features will be disabled")
+        logging.warning("OPENAI_API_KEY not found - OpenAI features will be disabled")
+        return []
 
-    # Connect to Weaviate
-    client = weaviate.connect_to_weaviate_cloud(
-        cluster_url=WCD_URL,
-        auth_credentials=wvc.init.Auth.api_key(WCD_API_KEY)
-    )
+    try:
+        # Connect to Weaviate
+        client = weaviate.connect_to_weaviate_cloud(
+            cluster_url=WCD_URL,
+            auth_credentials=wvc.init.Auth.api_key(WCD_API_KEY)
+        )
+    except Exception as e:
+        logging.error(f"Failed to connect to Weaviate: {e}")
+        return []
 
     # Initialize OpenAI LangChain Embeddings
     embedder = OpenAIEmbeddings()
