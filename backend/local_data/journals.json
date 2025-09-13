@@ -1,0 +1,93 @@
+[
+  {
+    "_id": "journal_1_1757752187",
+    "title": "Test Title",
+    "entry": "Test Content",
+    "username": "test_user",
+    "timestamp": "2025-09-13T08:29:47.516145+00:00"
+  },
+  {
+    "_id": "journal_2_1757752990",
+    "title": "API Test Journal",
+    "entry": "This is a test to verify the journal API is working properly with local storage fallback.",
+    "username": "api_test_user",
+    "timestamp": "2025-09-13T08:43:10.436134+00:00"
+  },
+  {
+    "_id": "journal_3_1757753052",
+    "title": "API Test Journal",
+    "entry": "This is a test to verify the journal API is working properly with local storage fallback.",
+    "username": "api_test_user",
+    "timestamp": "2025-09-13T08:44:12.211576+00:00"
+  },
+  {
+    "_id": "journal_4_1757753112",
+    "title": "Another User Journal",
+    "entry": "This is from another user",
+    "username": "user2",
+    "timestamp": "2025-09-13T08:45:12.887531+00:00"
+  },
+  {
+    "_id": "journal_5_1757755551",
+    "title": "vbsdkjbdj",
+    "entry": "vanvlabna",
+    "username": "tejesh",
+    "timestamp": "2025-09-13T09:25:51.742226+00:00"
+  },
+  {
+    "_id": "journal_6_1757755737",
+    "title": "fhdrjt",
+    "entry": "dfjfgmfm",
+    "username": "tejesh",
+    "timestamp": "2025-09-13T09:28:57.307186+00:00"
+  },
+  {
+    "_id": "journal_7_1757755798",
+    "title": "fhdrjt",
+    "entry": "dfjfgmfm",
+    "username": "tejesh",
+    "timestamp": "2025-09-13T09:29:58.498246+00:00"
+  },
+  {
+    "_id": "journal_8_1757756118",
+    "title": "fndfn",
+    "entry": "ssdnsn",
+    "username": "tejesh",
+    "timestamp": "2025-09-13T09:35:18.187572+00:00"
+  },
+  {
+    "_id": "journal_9_1757757304",
+    "title": "Direct Test Journal",
+    "entry": "This is a direct test of the journal saving system. If this works, the API should work too.",
+    "username": "direct_test_user",
+    "timestamp": "2025-09-13T09:55:04.832920+00:00"
+  },
+  {
+    "_id": "journal_10_1757758575",
+    "title": "Server Start Test",
+    "entry": "Testing system",
+    "username": "system",
+    "timestamp": "2025-09-13T10:16:15.240476+00:00"
+  },
+  {
+    "_id": "journal_11_1757758614",
+    "title": "Production Test",
+    "entry": "Testing production server",
+    "username": "prod_test",
+    "timestamp": "2025-09-13T10:16:54.540793+00:00"
+  },
+  {
+    "_id": "journal_12_1757767706",
+    "title": "i want to go gym",
+    "entry": "ntg",
+    "username": "poshith1",
+    "timestamp": "2025-09-13T12:48:26.467265+00:00"
+  },
+  {
+    "_id": "journal_13_1757771366",
+    "title": "System Test Journal",
+    "entry": "Testing the complete system functionality",
+    "username": "system_test",
+    "timestamp": "2025-09-13T13:49:26.467155+00:00"
+  }
+]

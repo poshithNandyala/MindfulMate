@@ -3,6 +3,16 @@ from datetime import datetime, timedelta, timezone
 from contextlib import contextmanager
 from dotenv import load_dotenv
 import os
+import ssl
+from local_storage import (
+    save_journal_entry_local, 
+    get_journals_by_username_local, 
+    get_journals_by_date_local,
+    upload_chat_in_conversation_local,
+    get_past_conversations_local,
+    get_chats_by_date_local,
+    get_all_summaries_local
+)
 
 
 @contextmanager 
@@ -16,7 +26,13 @@ def get_mongo_client():
     if not MONGO_URI:
         raise ValueError("MONGO_URI not found in environment variables")
     
-    client = MongoClient(MONGO_URI)
+    # Simple, fast connection for production
+    client = MongoClient(
+        MONGO_URI,
+        connectTimeoutMS=3000,  # Very short timeout
+        serverSelectionTimeoutMS=3000,
+        socketTimeoutMS=3000
+    )
     try:
         yield client
     finally:
@@ -33,12 +49,22 @@ def get_mongo_collection(collection_name="conversation"):
     MONGO_URI = os.getenv("MONGO_URI")
     if not MONGO_URI:
         raise ValueError("MONGO_URI not found in environment variables")
-        
-    client = MongoClient(MONGO_URI)
-    db = client["chatbot_db"]
-    collection = db[collection_name]
-
-    return collection
+    
+    # Fast MongoDB connection without ping test
+    try:
+        client = MongoClient(
+            MONGO_URI,
+            connectTimeoutMS=3000,  # 3 second timeout
+            serverSelectionTimeoutMS=3000,
+            socketTimeoutMS=3000
+        )
+        db = client["chatbot_db"]
+        collection = db[collection_name]
+        return collection
+    except Exception as e:
+        print(f"MongoDB connection failed: {e}")
+        # Fallback to local storage
+        raise Exception(f"MongoDB connection failed: {e}")
 
 
 def get_all_summaries():
@@ -46,14 +72,12 @@ def get_all_summaries():
     Function to get all summaries from the database sorted in descending order by date
     :return: list of all summaries
     """
-    # Get the collection
-    collection = get_mongo_collection("summary")
-
-    # Query to get all summaries sorted by date in descending order
-    results = collection.find({}, {"_id": 0}).sort("date", -1)
-    results = list(results)
-
-    return results
+    # Use local storage directly for production
+    try:
+        return get_all_summaries_local()
+    except Exception as e:
+        print(f"Failed to get summaries: {e}")
+        return []
 
 
 def get_past_conversations(limit=10):
@@ -62,37 +86,43 @@ def get_past_conversations(limit=10):
     :param limit: Number of messages to retrieve
     :return: list of past 'limit' conversations
     """
-    # Get the collection
-    collection = get_mongo_collection("conversation")
+    try:
+        # Try MongoDB first
+        collection = get_mongo_collection("conversation")
+        past_messages = (collection.find({}, {"user_input": 1, "response": 1, "_id": 0})
+                         .sort([("timestamp", -1)])
+                         .limit(limit))
+        formatted_messages = [{"user_input": message["user_input"],
+                               "response": message["response"]}
+                              for message in past_messages]
+        return formatted_messages
+    except Exception as e:
+        print(f"MongoDB failed, using local storage: {e}")
+        # Fallback to local storage
+        try:
+            return get_past_conversations_local(limit)
+        except Exception as e2:
+            print(f"Local storage also failed: {e2}")
+            return []
 
-    # Query to get the past messages sorted by date in descending order
-    past_messages = (collection.find({}, {"user_input": 1, "response": 1, "_id": 0})
-                     .sort([("timestamp", -1)])
-                     .limit(limit))
 
-    # Format the messages
-    formatted_messages = [{"user_input": message["user_input"],
-                           "response": message["response"]}
-                          for message in past_messages]
-
-    return formatted_messages
-
-
-def save_journal_entry(title: str, entry: str):
+def save_journal_entry(title: str, entry: str, username: str):
     """
     Store a new journal entry in the journal collection.
     :param title: Title of the journal entry
     :param entry: The journal entry text
+    :param username: Username of the person creating the journal
     :return: Inserted journal entry ID
     """
     try:
-        # Get the collection
+        # Try MongoDB first
         collection = get_mongo_collection("journal")
 
         # Create a dictionary to store the journal entry
         journal_entry = {
             "title": title,
             "entry": entry,
+            "username": username,
             "timestamp": datetime.now(timezone.utc)
         }
 
@@ -101,7 +131,40 @@ def save_journal_entry(title: str, entry: str):
         return str(result.inserted_id)
 
     except Exception as e:
-        raise Exception(f"Error saving journal entry: {e}")
+        print(f"MongoDB failed, using local storage: {e}")
+        # Fall back to local storage
+        return save_journal_entry_local(title, entry, username)
+
+
+def get_journals_by_username(username: str):
+    """
+    Retrieve all journal entries for a specific user, sorted by timestamp (most recent first).
+    
+    :param username: Username to filter journals by
+    :return: List of journal entries for that user
+    """
+    try:
+        # Try MongoDB first
+        collection = get_mongo_collection("journal")
+
+        print(f"Fetching journal entries for user: {username}")
+        
+        # Query using username filter, sorted by timestamp descending (most recent first)
+        journals = list(collection.find({
+            "username": username
+        }).sort("timestamp", -1))
+
+        # Convert ObjectId to string and timestamp to ISO format
+        for journal in journals:
+            journal["_id"] = str(journal["_id"])
+            journal["timestamp"] = journal["timestamp"].isoformat()
+
+        return journals
+
+    except Exception as e:
+        print(f"MongoDB failed, using local storage: {e}")
+        # Fall back to local storage
+        return get_journals_by_username_local(username)
 
 
 def get_journals_by_date(date: str):
@@ -146,28 +209,28 @@ def get_chats_by_date(date: str):
     :return: List of conversations
     """
     try:
-        # Get the collection
+        # Try MongoDB first
         collection = get_mongo_collection("conversation")
-
-        # Convert date string to datetime objects
         start_date = datetime.strptime(date, "%Y-%m-%d")
         end_date = start_date + timedelta(days=1)
-
-        # Query MongoDB for records within the given date range
+        
         conversations = list(collection.find(
-            {"timestamp": {"$gte": start_date,
-                           "$lt": end_date}}
+            {"timestamp": {"$gte": start_date, "$lt": end_date}}
         ).sort("timestamp", 1))
-
-        # Convert ObjectId and timestamp to readable format
+        
         for convo in conversations:
-            convo["_id"] = str(convo["_id"])  # Convert ObjectId to string
-            convo["timestamp"] = convo["timestamp"].isoformat()  # Convert timestamp to readable format
-
+            convo["_id"] = str(convo["_id"])
+            convo["timestamp"] = convo["timestamp"].isoformat()
+        
         return conversations
-
     except Exception as e:
-        raise Exception(f"Error fetching conversations: {e}")
+        print(f"MongoDB failed, using local storage: {e}")
+        # Fallback to local storage
+        try:
+            return get_chats_by_date_local(date)
+        except Exception as e2:
+            print(f"Local storage also failed: {e2}")
+            return []
 
 
 def upload_chat_in_conversation(user_prompt, sentiment_score, result):
@@ -178,13 +241,21 @@ def upload_chat_in_conversation(user_prompt, sentiment_score, result):
     :param result: response by the chatbot
     :return: None
     """
-    # Get the collection
-    collection = get_mongo_collection("conversation")
-
-    # Insert the chat into the collection
-    collection.insert_one(
-        {"user_input": user_prompt,
-         "sentiment_score": sentiment_score,
-         "response": result,
-         "timestamp": datetime.now(timezone.utc)}
-    )
+    try:
+        # Try MongoDB first
+        collection = get_mongo_collection("conversation")
+        collection.insert_one(
+            {"user_input": user_prompt,
+             "sentiment_score": sentiment_score,
+             "response": result,
+             "timestamp": datetime.now(timezone.utc)}
+        )
+        print("Chat saved to MongoDB successfully")
+    except Exception as e:
+        print(f"MongoDB failed, using local storage: {e}")
+        # Fallback to local storage
+        try:
+            upload_chat_in_conversation_local(user_prompt, sentiment_score, result)
+            print("Chat saved to local storage successfully")
+        except Exception as e2:
+            print(f"Local storage also failed: {e2}")

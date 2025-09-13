@@ -124,16 +124,28 @@ def initialize_llm_with_fallback(gemini_model="gemini-1.5-flash", openai_model="
     :param openai_model: OpenAI model name for fallback
     :return: tuple (primary_llm, fallback_llm, primary_type)
     """
+    # Always try Gemini first (primary)
     primary_llm = initialize_gemini_llm(gemini_model)
-    fallback_llm = initialize_openai_llm(openai_model)
+    
+    # Only try OpenAI if API key is available
+    fallback_llm = None
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    if openai_api_key:
+        fallback_llm = initialize_openai_llm(openai_model)
+    else:
+        logging.info("OpenAI API key not found - Gemini only mode")
     
     if primary_llm is not None:
+        logging.info("Successfully initialized Gemini as primary LLM")
         return primary_llm, fallback_llm, "gemini"
     elif fallback_llm is not None:
         logging.warning("Gemini initialization failed, using OpenAI as primary")
         return fallback_llm, None, "openai"
     else:
-        logging.error("Both Gemini and OpenAI initialization failed. Please check your API keys.")
+        if not openai_api_key:
+            logging.error("Gemini initialization failed and no OpenAI API key available. Please check your GOOGLE_API_KEY.")
+        else:
+            logging.error("Both Gemini and OpenAI initialization failed. Please check your API keys.")
         return None, None, "none"
 
 # Backward compatibility
@@ -387,20 +399,25 @@ def get_results(user_prompt):
     # Get system prompt
     system_prompt = get_system_prompt()
 
-    # Short Term Context - Last 10 conversation
-    # Get past conversations
-    past_conversations = get_past_conversations(limit=10)
-    # Convert past conversations into a string
-    past_conversations_context = "\n".join([f"user_input: {msg['user_input']}\nresponse: {msg['response']}"
-                                            for msg in past_conversations])
+    # Short Term Context - Last 10 conversation (with error handling)
+    try:
+        past_conversations = get_past_conversations(limit=10)
+        past_conversations_context = "\n".join([f"user_input: {msg['user_input']}\nresponse: {msg['response']}"
+                                                for msg in past_conversations])
+    except Exception as e:
+        logging.warning(f"Failed to get past conversations: {e}")
+        past_conversations_context = "No past conversations available."
 
-    # Long Term context - All summaries
-    summaries = get_all_summaries()
-    # Format summaries and convert into a string
-    summaries_context = "\n".join([
-        f"Date: {s['date']}\nOverall Mood: {s['overall_mood']}\nSentiment Score: {s['sentiment_score']}\n"
-        f"Chat Summary: {s['chat_summary']}\nJournal Summary: {s['journal_summary']}\n"
-        for s in summaries]) if summaries else "No summaries available."
+    # Long Term context - All summaries (with error handling)
+    try:
+        summaries = get_all_summaries()
+        summaries_context = "\n".join([
+            f"Date: {s['date']}\nOverall Mood: {s['overall_mood']}\nSentiment Score: {s['sentiment_score']}\n"
+            f"Chat Summary: {s['chat_summary']}\nJournal Summary: {s['journal_summary']}\n"
+            for s in summaries]) if summaries else "No summaries available."
+    except Exception as e:
+        logging.warning(f"Failed to get summaries: {e}")
+        summaries_context = "No summaries available."
 
     # Get the normalized sentiment score of the user's prompt
     sentiment_score = analyze_sentiment(user_prompt)
@@ -429,8 +446,12 @@ def get_results(user_prompt):
     # Log which model was used
     logging.info(f"Response generated using: {used_model}")
 
-    # Upload the chat in the conversation collection in MongoDB
-    upload_chat_in_conversation(user_prompt, sentiment_score, result)
+    # Upload the chat in the conversation collection (with local storage fallback)
+    try:
+        upload_chat_in_conversation(user_prompt, sentiment_score, result)
+    except Exception as e:
+        logging.warning(f"Failed to save chat conversation: {e}")
+        # Don't fail the whole chat if saving fails
 
     return result
 
@@ -447,9 +468,13 @@ def retrieve_relevant_chunks(user_prompt, top_k=5):
     WCD_URL = os.getenv("WCD_URL")
     WCD_API_KEY = os.getenv("WCD_API_KEY")
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-    # Check if environment variables are set
-    if not WCD_URL or not WCD_API_KEY or not OPENAI_API_KEY:
+    # Check if environment variables are set (OPENAI_API_KEY is optional)
+    if not WCD_URL or not WCD_API_KEY:
         raise ValueError("ERROR: Missing required environment variables in .env file!")
+    
+    # Warn if OpenAI API key is missing but don't fail
+    if not OPENAI_API_KEY:
+        print("WARNING: OPENAI_API_KEY not found - OpenAI features will be disabled")
 
     # Connect to Weaviate
     client = weaviate.connect_to_weaviate_cloud(

@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "journal_1_1757753492",
+    "title": "System Test Journal",
+    "entry": "Testing the complete system functionality",
+    "username": "system_test",
+    "timestamp": "2025-09-13T08:51:32.200232+00:00"
+  },
+  {
+    "_id": "journal_2_1757753524",
+    "title": "Database Test Journal",
+    "entry": "Testing database functions with fallback",
+    "username": "db_test_user",
+    "timestamp": "2025-09-13T08:52:04.304216+00:00"
+  },
+  {
+    "_id": "journal_3_1757757793",
+    "title": "Final Test Entry",
+    "entry": "This confirms the storage system is working",
+    "username": "final_test_user",
+    "timestamp": "2025-09-13T10:03:13.113732+00:00"
+  },
+  {
+    "_id": "journal_4_1757757824",
+    "title": "Database Handler Test",
+    "entry": "Testing the database handler with MongoDB fallback to local storage",
+    "username": "db_test_user",
+    "timestamp": "2025-09-13T10:03:44.068891+00:00"
+  }
+]

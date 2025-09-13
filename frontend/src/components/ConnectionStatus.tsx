@@ -38,7 +38,7 @@ const ConnectionStatus: React.FC = () => {
       setMessage(response.message || 'Backend connected successfully');
     } catch (error) {
       setStatus('error');
-      setMessage('Backend connection failed. Please ensure the backend server is running on port 8000.');
+      setMessage('Backend connection failed. Please ensure the backend server is running on port 8081.');
       console.error('Connection error:', error);
     }
   };

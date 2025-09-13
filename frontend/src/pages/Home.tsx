@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { moodAPI } from '../utils/api';
 import CustomButton from '../components/CustomButton';
 
 interface MoodData {
@@ -11,8 +13,10 @@ interface MoodData {
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
   const [greeting, setGreeting] = useState('');
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
+  const [moodResponse, setMoodResponse] = useState<string>('');
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -34,10 +38,30 @@ const Home: React.FC = () => {
     { name: 'Sad', emoji: '😢', color: '#fc8181', gradient: 'from-blue-400 to-blue-600' },
   ];
 
-  const handleMoodSelect = (mood: string) => {
+  const handleMoodSelect = async (mood: string) => {
     setSelectedMood(mood);
-    // TODO: Send mood to backend
-    console.log('Mood selected:', mood);
+    
+    // Send mood-aware message to AI
+    try {
+      const moodMessages = {
+        'Calm': `Hello, I'm feeling calm today. I'd like some peaceful thoughts and mindfulness advice.`,
+        'Happy': `Hi there! I'm feeling really happy today! Share in my joy and give me some positive energy.`,
+        'Anxious': `I'm feeling anxious right now. Can you help me feel more grounded and provide some calming words?`,
+        'Sad': `I'm feeling sad today. I could use some gentle support and understanding words.`
+      };
+      
+      const response = await moodAPI.sendMoodMessage(
+        moodMessages[mood as keyof typeof moodMessages] || `I'm feeling ${mood.toLowerCase()} today.`,
+        mood.toLowerCase()
+      );
+      
+      if (response.response) {
+        setMoodResponse(response.response);
+      }
+    } catch (error) {
+      console.error('Error sending mood message:', error);
+      setMoodResponse("I'm here for you. How can I help you feel better today?");
+    }
   };
 
   const stats = [
@@ -73,6 +97,36 @@ const Home: React.FC = () => {
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        {/* Profile Section */}
+        <div className="flex justify-end mb-6">
+          {isAuthenticated ? (
+            <div className="flex items-center gap-4">
+              <div className="text-right">
+                <p className="text-light font-medium">Welcome back, {user?.username}!</p>
+                <p className="text-medium text-sm">{user?.email}</p>
+              </div>
+              <div className="w-12 h-12 bg-gradient-to-r from-accent-color to-teal-400 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-lg">{user?.username?.charAt(0).toUpperCase()}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex gap-3">
+              <CustomButton
+                title="Sign In"
+                onPress={() => navigate('/signin')}
+                variant="secondary"
+                size="sm"
+              />
+              <CustomButton
+                title="Sign Up"
+                onPress={() => navigate('/signup')}
+                variant="primary"
+                size="sm"
+              />
+            </div>
+          )}
+        </div>
+
         {/* Hero Section */}
         <div className="text-center mb-8 sm:mb-12 animate-fade-in">
           <div className="mb-6 sm:mb-8">
@@ -143,6 +197,33 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Mood Response */}
+        {selectedMood && moodResponse && (
+          <div className="bg-gradient-to-r from-accent-color/10 to-teal-400/10 backdrop-blur-sm border border-accent-color/30 rounded-3xl p-6 sm:p-8 mb-8 sm:mb-10 shadow-xl animate-fade-in">
+            <h2 className="text-2xl sm:text-3xl font-bold text-light mb-4 flex items-center">
+              <span className="mr-3 text-3xl">
+                {moods.find(m => m.name === selectedMood)?.emoji || '💭'}
+              </span>
+              Your AI Companion Response
+            </h2>
+            <div className="bg-dark/20 rounded-2xl p-4 sm:p-6 border border-accent-color/20">
+              <p className="text-light leading-relaxed text-base sm:text-lg">
+                {moodResponse}
+              </p>
+              {isAuthenticated && (
+                <div className="mt-4 pt-4 border-t border-accent-color/20 flex justify-center">
+                  <CustomButton
+                    title="Continue Chat"
+                    onPress={() => navigate('/chat')}
+                    variant="primary"
+                    size="sm"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Quick Actions */}
         <div className="bg-gradient-to-r from-accent-color/5 to-teal-400/5 backdrop-blur-sm border border-accent-color/20 rounded-3xl p-6 sm:p-8 mb-8 sm:mb-10 shadow-xl">

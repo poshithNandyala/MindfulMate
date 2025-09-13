@@ -9,8 +9,8 @@ const Navigation: React.FC = () => {
     { name: 'Home', path: '/home', icon: '🏠' },
     { name: 'Chat', path: '/chat', icon: '💬' },
     { name: 'Journal', path: '/journal', icon: '📔' },
+    { name: 'Past Journals', path: '/past-journals', icon: '📚' },
     { name: 'Meditate', path: '/meditate', icon: '🧘‍♀️' },
-    { name: 'Profile', path: '/profile', icon: '👤' },
   ];
 
   return (

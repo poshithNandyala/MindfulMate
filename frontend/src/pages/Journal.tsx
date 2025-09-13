@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
+import { useAuth } from '../contexts/AuthContext';
 import { journalAPI } from '../utils/api';
+import { testBackendConnection, showConnectionStatus } from '../utils/connectionTest';
 import InputField from '../components/InputField';
 import CustomButton from '../components/CustomButton';
 import MoodModal from '../components/MoodModal';
@@ -10,10 +12,12 @@ interface JournalEntry {
   _id: string;
   title: string;
   entry: string;
+  username: string;
   timestamp: string;
 }
 
 const Journal: React.FC = () => {
+  const { user } = useAuth();
   const [title, setTitle] = useState('');
   const [entry, setEntry] = useState('');
   const [entries, setEntries] = useState<JournalEntry[]>([]);
@@ -38,24 +42,44 @@ const Journal: React.FC = () => {
   };
 
   const saveEntry = async () => {
-    if (!title.trim() || !entry.trim()) return;
+    if (!title.trim() || !entry.trim() || !user?.username) {
+      alert('Please fill in all fields and make sure you are logged in.');
+      return;
+    }
 
+    console.log('📝 Starting journal save...', { title: title.slice(0, 20), user: user.username });
     setIsLoading(true);
+    
     try {
-      await journalAPI.saveEntry(title, entry);
+      const result = await journalAPI.saveEntry(title, entry, user.username);
+      console.log('✅ Journal saved successfully:', result);
+      
+      // Clear form
       setTitle('');
       setEntry('');
+      
+      // Reload entries
       await loadEntries();
+      
+      // Show success feedback
       setShowMoodModal(true);
-    } catch (error) {
-      console.error('Error saving journal entry:', error);
+      
+    } catch (error: any) {
+      console.error('❌ Error saving journal entry:', error);
+      alert(`Failed to save journal entry: ${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   const handleDateChange = (date: any) => {
     setSelectedDate(date);
     setShowCalendar(false);
+  };
+
+  const testConnection = async () => {
+    const result = await testBackendConnection();
+    showConnectionStatus(result.success, result.message);
   };
 
   const handleMoodSelect = (mood: string) => {
@@ -101,6 +125,27 @@ const Journal: React.FC = () => {
         </div>
 
         {/* New Entry Form */}
+        {/* User Info */}
+        {user ? (
+          <div className="bg-dark/30 border border-medium/20 rounded-lg p-4 mb-6">
+            <p className="text-light text-sm">
+              Creating journal entry as: <span className="font-semibold text-accent-color">{user.username}</span>
+            </p>
+          </div>
+        ) : (
+          <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mb-6">
+            <p className="text-red-300 text-sm">
+              ⚠️ Please sign in to save journal entries. 
+              <button 
+                onClick={() => window.location.href = '/signin'}
+                className="ml-2 underline hover:text-red-100"
+              >
+                Sign In Here
+              </button>
+            </p>
+          </div>
+        )}
+
         <div className="bg-dark/50 border border-medium/30 rounded-lg p-6 mb-6">
           <h3 className="text-lg font-semibold text-light mb-4">New Entry</h3>
           
@@ -120,12 +165,27 @@ const Journal: React.FC = () => {
             rows={5}
           />
           
-          <CustomButton
-            title={isLoading ? "Saving..." : "Save Entry"}
-            onPress={saveEntry}
-            disabled={!title.trim() || !entry.trim() || isLoading}
-            className="w-full"
-          />
+          <div className="flex gap-2">
+            <CustomButton
+              title={isLoading ? "Saving..." : "Save Entry"}
+              onPress={saveEntry}
+              disabled={!user?.username || !title.trim() || !entry.trim() || isLoading}
+              className="flex-1"
+            />
+            <CustomButton
+              title="Past Journals"
+              onPress={() => window.location.href = '/past-journals'}
+              variant="secondary"
+              className="flex-1"
+            />
+            <CustomButton
+              title="Test Connection"
+              onPress={testConnection}
+              variant="warning"
+              size="sm"
+              className="px-3"
+            />
+          </div>
         </div>
 
         {/* Previous Entries */}

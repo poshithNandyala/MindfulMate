@@ -1,22 +1,23 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import InputField from '../components/InputField';
 import CustomButton from '../components/CustomButton';
 
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
+  const { register } = useAuth();
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleSignUp = async () => {
     setError('');
     
-    if (!firstName.trim() || !lastName.trim() || !email.trim() || !password.trim()) {
+    if (!username.trim() || !email.trim() || !password.trim()) {
       setError('Please fill in all fields');
       return;
     }
@@ -33,11 +34,19 @@ const SignUp: React.FC = () => {
 
     setIsLoading(true);
     
-    // Simulate sign up - replace with actual authentication
-    setTimeout(() => {
+    try {
+      const success = await register(username, email, password);
+      
+      if (success) {
+        navigate('/home');
+      } else {
+        setError('Registration failed. Username or email might already exist.');
+      }
+    } catch (error: any) {
+      setError(error.message || 'Registration failed');
+    } finally {
       setIsLoading(false);
-      navigate('/home');
-    }, 1000);
+    }
   };
 
   return (
@@ -59,22 +68,12 @@ const SignUp: React.FC = () => {
 
         {/* Form */}
         <div className="space-y-4 mb-6">
-          <div className="flex space-x-3">
-            <InputField
-              label="First Name"
-              placeholder="First name"
-              value={firstName}
-              onChangeText={setFirstName}
-              className="mb-0"
-            />
-            <InputField
-              label="Last Name"
-              placeholder="Last name"
-              value={lastName}
-              onChangeText={setLastName}
-              className="mb-0"
-            />
-          </div>
+          <InputField
+            label="Username"
+            placeholder="Choose a username"
+            value={username}
+            onChangeText={setUsername}
+          />
           
           <InputField
             label="Email"

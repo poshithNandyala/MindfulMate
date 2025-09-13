@@ -1,11 +1,16 @@
 from pymongo import MongoClient
 import json
-
+import os
+from dotenv import load_dotenv
 
 
 def get_mongo_collection(collection_name):
-    MONGO_URL = "mongodb+srv://jc4320:uaerobp43ssuhnNl@cluster0.2tfqs.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-    client = MongoClient(MONGO_URL)
+    load_dotenv()
+    MONGO_URI = os.getenv("MONGO_URI")
+    if not MONGO_URI:
+        raise ValueError("MONGO_URI not found in environment variables")
+    
+    client = MongoClient(MONGO_URI)
     db = client["chatbot_db"]
     collection = db[collection_name]
 
