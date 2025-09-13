@@ -25,43 +25,43 @@ const Meditate: React.FC = () => {
 
   // Real non-copyright ambient sounds from various free sources
   const sounds: Sound[] = [
-    { 
-      name: 'Beach', 
-      emoji: '🏖️', 
-      // Free ocean waves sound from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/2390/2390-preview.mp3'
-    },
-    { 
-      name: 'Forest', 
-      emoji: '🌲', 
-      // Free forest ambience from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/523/523-preview.mp3'
-    },
-    { 
-      name: 'Rain', 
-      emoji: '🌧️', 
-      // Free rain sound from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/2393/2393-preview.mp3'
-    },
-    { 
-      name: 'River', 
-      emoji: '🏞️', 
-      // Free flowing water from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/578/578-preview.mp3'
-    },
-    { 
-      name: 'Birds', 
-      emoji: '🕊️', 
-      // Free bird sounds from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/2462/2462-preview.mp3'
-    },
-    { 
-      name: 'Wind', 
-      emoji: '💨', 
-      // Free wind ambience from Mixkit (royalty-free)
-      url: 'https://assets.mixkit.co/active_storage/sfx/2395/2395-preview.mp3'
-    },
-  ];
+  { 
+    name: 'Forest Birds', 
+    emoji: '🌲🕊️', 
+    // From Pixabay sound effects: forest ambience / birds nature
+    url: 'https://cdn.pixabay.com/download/audio/2022/09/14/audio_5e2d2a50d9.mp3?filename=forest-birds-nature-sound-16588.mp3'
+  },
+  { 
+    name: 'Meditation Bell', 
+    emoji: '🔔', 
+    // From Pixabay: meditation bell / singing bowl
+    url: 'https://cdn.pixabay.com/download/audio/2021/08/04/audio_2f6b956f1e.mp3?filename=meditation-bell-tibetan-singing-bowl-6378.mp3'
+  },
+  { 
+    name: 'Calm Rain', 
+    emoji: '🌧️', 
+    // From Pixabay: rain loop / sound for relaxation
+    url: 'https://cdn.pixabay.com/download/audio/2020/06/17/audio_6e6918feda.mp3?filename=rain-loop-6169.mp3'
+  },
+  { 
+    name: 'Zen River Flow', 
+    emoji: '🏞️', 
+    // From Pixabay: calm river / water flowing sound
+    url: 'https://cdn.pixabay.com/download/audio/2022/05/17/audio_8890109267.mp3?filename=river-water-flow-116420.mp3'
+  },
+  { 
+    name: 'Wind Chimes', 
+    emoji: '🎐', 
+    // From Pixabay: chimes / zen ambience
+    url: 'https://cdn.pixabay.com/download/audio/2022/11/09/audio_d81b3f7c47.mp3?filename=wind-chimes-183264.mp3'
+  },
+  { 
+    name: 'Soft Pad Ambience', 
+    emoji: '🧘', 
+    // From Pixabay: soft ambient pad (synth) for meditation
+    url: 'https://cdn.pixabay.com/download/audio/2021/11/22/audio_2aa8f0f384.mp3?filename=soft-pad-ambience-18396.mp3'
+  },
+];
 
   useEffect(() => {
     return () => {
